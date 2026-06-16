@@ -6,34 +6,46 @@ using UnityEngine.InputSystem;
 
 public class PlayerInventoryHolder : InventoryHolder
 {
-    [SerializeField] protected int secondaryInventorySize;
-    [SerializeField] protected InventorySystem secondaryInventorySystem;
+    public static UnityAction OnPlayerInventoryChanged;
 
-    public InventorySystem SecondaryInventorySystem => secondaryInventorySystem;
-
-    public static UnityAction<InventorySystem> OnPlayerBackpackDisplayRequested;
-
+    void Start()
+    {
+        SaveGameManager.data.playerInventory = new InventorySaveData(primaryInventorySystem);
+    }
+    
     void Update()
     {
         if (Keyboard.current.bKey.wasPressedThisFrame)
         {
-            OnPlayerBackpackDisplayRequested?.Invoke(secondaryInventorySystem);
+            if (InventoryUIController.Instance != null)
+            {
+                var backpack = InventoryUIController.Instance.playerBackpackPanel;
+            
+                if (backpack.gameObject.activeInHierarchy)
+                {
+                    backpack.gameObject.SetActive(false);
+                }
+                else
+                {
+                    backpack.gameObject.SetActive(true);
+                    backpack.RefreshDynamicInventory(primaryInventorySystem, offset);
+                }
+            }
         }
     }
-
-    protected override void Awake()
+    
+    protected override void LoadInventory(SaveData data)
     {
-        base.Awake();
-
-        secondaryInventorySystem = new InventorySystem(secondaryInventorySize);
+        if (data.playerInventory.inventorySystem != null)
+        {
+            this.primaryInventorySystem = data.playerInventory.inventorySystem;
+            OnPlayerInventoryChanged?.Invoke();
+        }
     }
 
     public bool AddToInventory(ItemData data, int amount)
     {
         if (primaryInventorySystem.AddToInventory(data, amount))
-        {
-            return true;
-        } else if (secondaryInventorySystem.AddToInventory(data, amount))
         {
             return true;
         }

@@ -1,9 +1,37 @@
+using System;
 using UnityEngine;
 
 public class StaticInventoryDisplay : InventoryDisplay
 {
     [SerializeField] private InventoryHolder inventoryHolder;
     [SerializeField] private InventorySlotUI[] slots;
+
+    void OnEnable()
+    {
+        PlayerInventoryHolder.OnPlayerInventoryChanged += RefreshStaticDisplay;
+    }
+
+    void OnDisable()
+    {
+        PlayerInventoryHolder.OnPlayerInventoryChanged -= RefreshStaticDisplay;
+        if (inventorySystem != null)
+        {
+            inventorySystem.OnInventorySlotChanged -= UpdateSlot;
+        }
+    }
+
+    private void RefreshStaticDisplay()
+    {
+        if (inventoryHolder != null)
+        {
+            if (inventorySystem != null) inventorySystem.OnInventorySlotChanged -= UpdateSlot;
+
+            inventorySystem = inventoryHolder.PrimaryInventorySystem;
+            inventorySystem.OnInventorySlotChanged += UpdateSlot;
+            
+            AssignSlots(inventorySystem, 0);
+        }
+    }
 
     protected override void Start()
     {
@@ -13,24 +41,25 @@ public class StaticInventoryDisplay : InventoryDisplay
         {
             inventorySystem = inventoryHolder.PrimaryInventorySystem;
             inventorySystem.OnInventorySlotChanged += UpdateSlot;
-        } else
-        {
-            Debug.Log($"No inventory assigned to {this.gameObject}");
         }
 
-        AssignSlots(inventorySystem);
+        AssignSlots(inventorySystem, 0);
     }
 
-    public override void AssignSlots(InventorySystem invToDisplay)
+    public override void AssignSlots(InventorySystem invToDisplay, int offset)
     {
         slotDictionary = new System.Collections.Generic.Dictionary<InventorySlotUI, InventorySlot>();
 
-        if (slots.Length != inventorySystem.InventorySize) Debug.Log($"Inventory slots out of sync on {this.gameObject}");
+        if (invToDisplay == null || slots == null) return;
 
-        for (int i = 0; i < inventorySystem.InventorySize; i ++)
+        for (int i = 0; i < inventoryHolder.Offset; i++)
         {
-            slotDictionary.Add(slots[i], inventorySystem.InventorySlots[i]);
-            slots[i].Init(inventorySystem.InventorySlots[i]);
+            if (i < invToDisplay.InventorySlots.Count && i < slots.Length)
+            {
+                slotDictionary.Add(slots[i], invToDisplay.InventorySlots[i]);
+                slots[i].Init(invToDisplay.InventorySlots[i]);
+                slots[i].UpdateUISlot();
+            }
         }
     }
 }
