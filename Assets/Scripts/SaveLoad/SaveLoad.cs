@@ -24,7 +24,7 @@ public static class SaveLoad
          string json = JsonUtility.ToJson(data, true);
          File.WriteAllText(dir + _fileName, json);
          
-         Debug.Log(dir + _fileName + " saved");
+         Debug.Log("The Game successfully saved!");
 
          return true;
     }
