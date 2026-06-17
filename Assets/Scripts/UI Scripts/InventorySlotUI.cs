@@ -18,6 +18,8 @@ public class InventorySlotUI : MonoBehaviour, IPointerClickHandler
     void Awake()
     {
         ClearSlot();
+        
+        itemSprite.preserveAspect = true;
 
         button = GetComponent<Button>();
         button?.onClick.AddListener(OnUISlotClick);

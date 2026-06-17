@@ -9,5 +9,5 @@ public class ItemData : ScriptableObject
     public string description;
     public Sprite icon;
     public int maxStackSize;
-    public bool isStackable;
+    public ItemWorld itemWorld;
 }

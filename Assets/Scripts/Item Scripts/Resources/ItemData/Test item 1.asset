@@ -16,5 +16,5 @@ MonoBehaviour:
   displayName: Orange cube
   description: Pretty cool orange cube
   icon: {fileID: 21300000, guid: 0cf4d948a75332d46998bc4f45a03242, type: 3}
-  maxStackSize: 3
-  isStackable: 1
+  maxStackSize: 5
+  itemWorld: {fileID: 1207428631125942897, guid: 50343d06f7ebaa24f921ee7db5cf6e1a, type: 3}

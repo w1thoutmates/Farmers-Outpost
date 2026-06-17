@@ -16,5 +16,5 @@ MonoBehaviour:
   displayName: Black cube
   description: Well black cube
   icon: {fileID: 21300000, guid: 749c1c0859246934f877b5e4d9433c76, type: 3}
-  maxStackSize: 1
-  isStackable: 0
+  maxStackSize: 20
+  itemWorld: {fileID: 9051015864835627620, guid: 59c5d05eb927c2c4494b3221099949c8, type: 3}
