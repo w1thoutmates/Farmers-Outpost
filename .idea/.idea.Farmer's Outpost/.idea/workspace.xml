@@ -10,36 +10,7 @@
     <configurations />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="63a57d10-30c5-44a8-8b64-58afc8653d45" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Farmer's Outpost/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Farmer's Outpost/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/MainScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/MainScene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Materials/FullRange_All_01 1.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Materials/FullRange_All_01 1.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Black cube.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Black cube.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Farmland.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Farmland.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Orange cube.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Orange cube.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Workbench.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Workbench.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Building System/InputManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Building System/InputManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Building System/Objects Database.asset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Building System/Objects Database.asset.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Building System/ObjectsDatabaseSO.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Building System/ObjectsDatabaseSO.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Building System/PlacementSystem.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Building System/PlacementSystem.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Inventory Scripts/MouseItemData.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Inventory Scripts/MouseItemData.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Item Scripts/Database.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Item Scripts/Database.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Item Scripts/ItemData.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Item Scripts/ItemData.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Item Scripts/Resources/Database.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Item Scripts/Resources/Database.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Item Scripts/Resources/ItemData/Test item 1.asset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Item Scripts/Resources/ItemData/Test item 1.asset.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Item Scripts/Resources/ItemData/Test item 2.asset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Item Scripts/Resources/ItemData/Test item 2.asset.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/SaveLoad/UniqueID.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/SaveLoad/UniqueID.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI Scripts/ChestInventory.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI Scripts/ChestInventory.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI Scripts/HotbarDisplay.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI Scripts/HotbarDisplay.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI Scripts/InventoryDisplay.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI Scripts/InventoryDisplay.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI Scripts/StaticInventoryDisplay.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI Scripts/StaticInventoryDisplay.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" afterDir="false" />
-    </list>
+    <list default="true" id="63a57d10-30c5-44a8-8b64-58afc8653d45" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -149,7 +120,7 @@
       <workItem from="1781623738012" duration="11147000" />
       <workItem from="1781680229291" duration="19409000" />
       <workItem from="1781784237147" duration="13561000" />
-      <workItem from="1781799146157" duration="16387000" />
+      <workItem from="1781799146157" duration="16626000" />
     </task>
     <task id="LOCAL-00001" summary="Save and Load Система и немного рефакторинга">
       <option name="closed" value="true" />
@@ -199,7 +170,15 @@
       <option name="project" value="LOCAL" />
       <updated>1781808524803</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Рефакторинг + улучшена система строительства + добавлена шина событий + добавлено использование предметов которые можно разместить">
+      <option name="closed" value="true" />
+      <created>1781819953099</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1781819953099</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -221,7 +200,8 @@
     <MESSAGE value="Доделана полная версия системы инвентаря" />
     <MESSAGE value="Создана база для системы строительства по сетке" />
     <MESSAGE value="Рефакторинг" />
-    <option name="LAST_COMMIT_MESSAGE" value="Рефакторинг" />
+    <MESSAGE value="Рефакторинг + улучшена система строительства + добавлена шина событий + добавлено использование предметов которые можно разместить" />
+    <option name="LAST_COMMIT_MESSAGE" value="Рефакторинг + улучшена система строительства + добавлена шина событий + добавлено использование предметов которые можно разместить" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
