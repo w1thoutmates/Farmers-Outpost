@@ -11,18 +11,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="63a57d10-30c5-44a8-8b64-58afc8653d45" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Farmer's Outpost/.idea/indexLayout.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Farmer's Outpost/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Farmer's Outpost/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/MainScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/MainScene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Inventory slot (0).prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Inventory slot (0).prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Interactor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Interactor.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Inventory Scripts/PlayerInventoryHolder.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Inventory Scripts/PlayerInventoryHolder.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Item Scripts/ItemData.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Item Scripts/ItemData.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI Scripts/InventorySlotUI.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI Scripts/InventorySlotUI.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI Scripts/InventoryUIController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI Scripts/InventoryUIController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI Scripts/StaticInventoryDisplay.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI Scripts/StaticInventoryDisplay.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Settings/Input/PlayerInputActions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Settings/Input/PlayerInputActions.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Settings/Input/PlayerInputActions.inputactions" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Settings/Input/PlayerInputActions.inputactions" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/InputManager.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/InputManager.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Settings/HDRPDefaultResources/DefaultLookDevProfile.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Settings/HDRPDefaultResources/DefaultLookDevProfile.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Settings/SkyDay.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Settings/SkyDay.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -46,6 +40,8 @@
   }
 }</component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Building System/InputManager.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Building System/PlacementSystem.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/SaveLoad/SaveData.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/SaveLoad/SaveGameManager.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/SaveLoad/UniqueID.cs" root0="FORCE_HIGHLIGHTING" />
@@ -128,7 +124,8 @@
       <updated>1781623738010</updated>
       <workItem from="1781623738012" duration="11147000" />
       <workItem from="1781680229291" duration="19409000" />
-      <workItem from="1781784237147" duration="8806000" />
+      <workItem from="1781784237147" duration="13561000" />
+      <workItem from="1781799146157" duration="1185000" />
     </task>
     <task id="LOCAL-00001" summary="Save and Load Система и немного рефакторинга">
       <option name="closed" value="true" />
@@ -154,7 +151,15 @@
       <option name="project" value="LOCAL" />
       <updated>1781697839819</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Доделана полная версия системы инвентаря">
+      <option name="closed" value="true" />
+      <created>1781793395904</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1781793395904</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -173,7 +178,8 @@
     <MESSAGE value="Save and Load Система и немного рефакторинга" />
     <MESSAGE value="Рефактор кода + синхронизация работы сохранений в редакторе unity и билдах игры" />
     <MESSAGE value="Добавлена возможность выбрасывать предметы из инвентаря" />
-    <option name="LAST_COMMIT_MESSAGE" value="Добавлена возможность выбрасывать предметы из инвентаря" />
+    <MESSAGE value="Доделана полная версия системы инвентаря" />
+    <option name="LAST_COMMIT_MESSAGE" value="Доделана полная версия системы инвентаря" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
