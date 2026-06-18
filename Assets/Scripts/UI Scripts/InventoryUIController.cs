@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 using UnityEngine.Serialization;
 
@@ -9,7 +10,8 @@ public class InventoryUIController : MonoBehaviour
     [FormerlySerializedAs("chestPanel")] public DynamicInventoryDisplay inventoryPanel;
     public DynamicInventoryDisplay playerBackpackPanel;
     
-    private bool _justOpenedThisFrame;
+    public static UnityAction<InventorySystem> OnChestInventoryOpened;
+    public static UnityAction OnChestInventoryClosed;
 
     void Awake()
     {
@@ -31,9 +33,7 @@ public class InventoryUIController : MonoBehaviour
 
     void Update()
     {
-        bool isChestOpen = inventoryPanel.gameObject.activeInHierarchy;
-        bool isBackpackOpen = playerBackpackPanel.gameObject.activeInHierarchy;
-        bool isAnyUIOpen = isChestOpen || isBackpackOpen;
+        bool isAnyUIOpen = inventoryPanel.gameObject.activeInHierarchy || playerBackpackPanel.gameObject.activeInHierarchy;
 
         if (isAnyUIOpen)
         {
@@ -48,12 +48,6 @@ public class InventoryUIController : MonoBehaviour
                 CloseAllInventories();
                 return;
             }
-
-            if (Keyboard.current.fKey.wasPressedThisFrame && isChestOpen && !_justOpenedThisFrame)
-            {
-                CloseAllInventories();
-                return;
-            }
         }
         else
         {
@@ -64,11 +58,6 @@ public class InventoryUIController : MonoBehaviour
         }
     }
 
-    void LateUpdate()
-    {
-        _justOpenedThisFrame = false;
-    }
-
     void DisplayInventory(InventorySystem invToDisplay, int offset)
     {
         if (invToDisplay == null)
@@ -76,15 +65,13 @@ public class InventoryUIController : MonoBehaviour
             CloseAllInventories();
             return;
         }
-        
-        _justOpenedThisFrame = true;
 
         inventoryPanel.gameObject.SetActive(true);
         inventoryPanel.RefreshDynamicInventory(invToDisplay, offset);
 
         OpenPlayerBackpackIfClosed();
 
-        // InputSystem.Update();
+        OnChestInventoryOpened?.Invoke(invToDisplay);
     }
 
     void DisplayPlayerBackpack(InventorySystem invToDisplay, int offset)
@@ -105,9 +92,11 @@ public class InventoryUIController : MonoBehaviour
         }
     }
 
-    private void CloseAllInventories()
+    public void CloseAllInventories()
     {
         inventoryPanel.gameObject.SetActive(false);
         playerBackpackPanel.gameObject.SetActive(false);
+        
+        OnChestInventoryClosed?.Invoke();
     }
 }

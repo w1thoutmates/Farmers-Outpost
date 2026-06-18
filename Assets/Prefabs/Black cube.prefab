@@ -30,8 +30,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.35, y: 0.35, z: 0.35}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 501589576046754633}
   m_Father: {fileID: 0}
@@ -72,7 +72,7 @@ MonoBehaviour:
   pickUpRadius: 1
   itemData: {fileID: 11400000, guid: 52655d6641571a34cb90a50333eb5929, type: 2}
   stackAmount: 1
-  _rotateSpeed: 20
+  rotateSpeed: 20
 --- !u!54 &-2336746943500144738
 Rigidbody:
   m_ObjectHideFlags: 0
