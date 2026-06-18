@@ -164,7 +164,7 @@ Material:
     - _AORemapMin: 0
     - _ATDistance: 1
     - _AddPrecomputedVelocity: 0
-    - _AlbedoAffectEmissive: 1
+    - _AlbedoAffectEmissive: 0
     - _AlphaCutoff: 0.5
     - _AlphaCutoffEnable: 0
     - _AlphaCutoffPostpass: 0.5
@@ -275,19 +275,19 @@ Material:
     - _UVDetail: 0
     - _UVEmissive: 0
     - _UVSec: 0
-    - _UseEmissiveIntensity: 1
+    - _UseEmissiveIntensity: 0
     - _UseShadowThreshold: 0
     - _ZTestDepthEqualForOpaque: 3
     - _ZTestGBuffer: 4
     - _ZTestTransparent: 4
     - _ZWrite: 1
     m_Colors:
-    - _BaseColor: {r: 0.58799994, g: 0.58799994, b: 0.58799994, a: 1}
-    - _Color: {r: 0.58799994, g: 0.58799994, b: 0.58799994, a: 1}
+    - _BaseColor: {r: 0.41509432, g: 0.2772584, b: 0.15468137, a: 1}
+    - _Color: {r: 0.4150943, g: 0.27725834, b: 0.15468132, a: 1}
     - _DiffusionProfileAsset: {r: 0, g: 0, b: 0, a: 0}
     - _DoubleSidedConstants: {r: 1, g: 1, b: -1, a: 0}
     - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
-    - _EmissiveColor: {r: 1.3350782, g: 1.2175062, b: 0, a: 1.7824345}
+    - _EmissiveColor: {r: 0, g: 0, b: 0, a: 1.7824345}
     - _EmissiveColorLDR: {r: 0.88031507, g: 0.8450703, b: 0, a: 1}
     - _InvPrimScale: {r: 1, g: 1, b: 0, a: 0}
     - _IridescenceThicknessRemap: {r: 0, g: 1, b: 0, a: 0}

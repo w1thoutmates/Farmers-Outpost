@@ -20,7 +20,7 @@ public class StaticInventoryDisplay : InventoryDisplay
         }
     }
 
-    private void RefreshStaticDisplay()
+    protected void RefreshStaticDisplay()
     {
         if (inventoryHolder != null)
         {

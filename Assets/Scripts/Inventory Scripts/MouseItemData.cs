@@ -118,7 +118,8 @@ public class MouseItemData : MonoBehaviour
         if (assignedInventorySlot.ItemData.itemWorld != null)
         {
             Vector3 spawnPosition = CalculateSpawnPosition();
-            ItemWorld itemWorld = Instantiate(assignedInventorySlot.ItemData.itemWorld, spawnPosition, Quaternion.identity);
+            GameObject newObject = Instantiate(assignedInventorySlot.ItemData.itemWorld, spawnPosition, Quaternion.identity);
+            ItemWorld itemWorld = newObject.GetComponent<ItemWorld>();
             itemWorld.SetupItem(assignedInventorySlot.ItemData, assignedInventorySlot.StackSize);
         
             AnimateDrop(itemWorld);
@@ -139,9 +140,10 @@ public class MouseItemData : MonoBehaviour
         {
             Vector3 spawnPosition = CalculateSpawnPosition();
     
-            ItemWorld itemWorld = Instantiate(assignedInventorySlot.ItemData.itemWorld, spawnPosition, Quaternion.identity);
-            itemWorld.SetupItem(assignedInventorySlot.ItemData, 1);
-                
+            GameObject newObject = Instantiate(assignedInventorySlot.ItemData.itemWorld, spawnPosition, Quaternion.identity);
+            ItemWorld itemWorld = newObject.GetComponent<ItemWorld>();
+            itemWorld.SetupItem(assignedInventorySlot.ItemData, assignedInventorySlot.StackSize);
+        
             AnimateDrop(itemWorld);
 
             if (itemWorld.TryGetComponent<Rigidbody>(out var rb))

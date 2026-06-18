@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 public abstract class InventoryDisplay : MonoBehaviour
 {
-    [SerializeField] MouseItemData mouseItemData;
+    [SerializeField] protected MouseItemData mouseItemData;
 
     protected InventorySystem inventorySystem;
     protected Dictionary<InventorySlotUI, InventorySlot> slotDictionary;

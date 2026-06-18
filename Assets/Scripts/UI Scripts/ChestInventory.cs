@@ -25,19 +25,40 @@ public class ChestInventory : InventoryHolder, IInteractable
 
     void Start()
     {
-        var chestSaveData = new InventorySaveData(primaryInventorySystem, this.transform.position, this.transform.rotation);
-        
-        SaveGameManager.data.chestDictionary.Add(GetComponent<UniqueID>().ID, chestSaveData);
+        string uniqueId = GetComponent<UniqueID>().ID;
+
+        if (SaveGameManager.data == null)
+        {
+            Debug.LogError("SaveGameManager.data не инициализирован! Проверьте порядок загрузки менеджера сохранения.");
+            return;
+        }
+
+        if (SaveGameManager.data.chestDictionary == null)
+        {
+            SaveGameManager.data.chestDictionary = new SerializableDictionary<string, InventorySaveData>();
+        }
+
+        if (SaveGameManager.data.chestDictionary.TryGetValue(uniqueId, out InventorySaveData existingChestData))
+        {
+            this.primaryInventorySystem = existingChestData.inventorySystem;
+            this.transform.position = existingChestData.position;
+            this.transform.rotation = existingChestData.rotation;
+        }
+        else
+        {
+            var chestSaveData = new InventorySaveData(primaryInventorySystem, this.transform.position, this.transform.rotation);
+            SaveGameManager.data.chestDictionary.Add(uniqueId, chestSaveData);
+        }
     }
 
     protected override void LoadInventory(SaveData data)
     {
-        if (data.chestDictionary.TryGetValue(GetComponent<UniqueID>().ID, out InventorySaveData chestSaveData))
+        if (data != null && data.chestDictionary != null && 
+            data.chestDictionary.TryGetValue(GetComponent<UniqueID>().ID, out InventorySaveData chestSaveData))
         {
             this.primaryInventorySystem = chestSaveData.inventorySystem;
             this.transform.position = chestSaveData.position;
             this.transform.rotation = chestSaveData.rotation;
-            
         }
     }
 

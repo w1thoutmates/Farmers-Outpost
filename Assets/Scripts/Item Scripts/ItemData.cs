@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 
 [CreateAssetMenu(menuName = "Inventory System/Inventory Item")]
-public class ItemData : ScriptableObject
+public abstract class ItemData : ScriptableObject
 {
     public int id = -1;
     public string displayName;
@@ -10,7 +10,7 @@ public class ItemData : ScriptableObject
     public string description;
     public Sprite icon;
     public int maxStackSize;
-    public ItemWorld itemWorld;
+    public GameObject itemWorld;
 
     public virtual void Use()
     {

@@ -160,7 +160,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ItemWorld
   pickUpRadius: 1
-  itemData: {fileID: 11400000, guid: 89bcc4c56d934904aa4e863dcff1e299, type: 2}
+  itemData: {fileID: 11400000, guid: 272f9f8a32ea8a54dbe785476c098332, type: 2}
   stackAmount: 1
   rotateSpeed: 20
 --- !u!54 &-7113402744088045256

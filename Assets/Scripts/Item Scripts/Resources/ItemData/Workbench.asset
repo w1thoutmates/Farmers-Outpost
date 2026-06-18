@@ -10,15 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: aad6edcb7bdcbb9418b94eac91324120, type: 3}
-  m_Name: Test Item 2
+  m_Name: Workbench
   m_EditorClassIdentifier: Assembly-CSharp::ItemPlacement
-  id: 2
-  displayName: Orange cube
-  description: 'Orange cube
-
-'
+  id: 3
+  displayName: Workbench
+  description: This is workbench. You should craft something!
   icon: {fileID: 21300000, guid: 0cf4d948a75332d46998bc4f45a03242, type: 3}
-  maxStackSize: 5
-  itemWorld: {fileID: 3714722923901777683, guid: 50343d06f7ebaa24f921ee7db5cf6e1a, type: 3}
-  size: {x: 1, y: 1}
-  prefab: {fileID: 3714722923901777683, guid: 50343d06f7ebaa24f921ee7db5cf6e1a, type: 3}
+  maxStackSize: 1
+  itemWorld: {fileID: 7999606056640602399, guid: 7566e24a6cbccc74aad6b9006b5692df, type: 3}
+  size: {x: 2, y: 1}
+  prefab: {fileID: 5911064875863569395, guid: 8139ad7e064ff294d9b6d82677870073, type: 3}

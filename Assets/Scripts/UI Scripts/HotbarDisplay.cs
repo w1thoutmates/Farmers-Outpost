@@ -36,6 +36,8 @@ public class HotbarDisplay : StaticInventoryDisplay
         _playerInputActions.Player.Hotbar6.performed += Hotbar6;
         _playerInputActions.Player.Hotbar7.performed += Hotbar7;
         _playerInputActions.Player.UseItem.performed += UseItem;
+        
+        EventBus.Subscribe(UpdateHotbarSlotAfterPlacementItemUsed);
     }
 
     protected override void OnDisable()
@@ -51,6 +53,8 @@ public class HotbarDisplay : StaticInventoryDisplay
         _playerInputActions.Player.Hotbar6.performed -= Hotbar6;
         _playerInputActions.Player.Hotbar7.performed -= Hotbar7;
         _playerInputActions.Player.UseItem.performed -= UseItem;
+        
+        EventBus.Unsubscribe(UpdateHotbarSlotAfterPlacementItemUsed);
     }
 
     #region Hotbar Select Methods
@@ -96,11 +100,40 @@ public class HotbarDisplay : StaticInventoryDisplay
     {
         if (_playerInputActions.Player.MouseWheel.ReadValue<float>() > 0.1f) ChangeIndex(1);
         if (_playerInputActions.Player.MouseWheel.ReadValue<float>() < -0.1f) ChangeIndex(-1);
+        
+        if (slots[_currentIndex].AssignedInventorySlot.ItemData is ItemPlacement itemPlacement)
+        {
+            if (!PlacementSystem.Instance.IsPlacementModeActive)
+            {
+                PlacementSystem.Instance.StartPlacement(itemPlacement.id);
+            }
+        }
+        else
+        {
+            if (PlacementSystem.Instance.IsPlacementModeActive)
+            {
+                PlacementSystem.Instance.StopPlacement();
+            }
+        }
     }
 
     void UseItem(InputAction.CallbackContext context)
     {
-        if (slots[_currentIndex].AssignedInventorySlot.ItemData != null) slots[_currentIndex].AssignedInventorySlot.ItemData.Use();
+        ItemData currentItemData = slots[_currentIndex].AssignedInventorySlot.ItemData;
+        if (currentItemData != null)
+        {
+            currentItemData.Use(); 
+        }
+    }
+
+    void UpdateHotbarSlotAfterPlacementItemUsed()
+    {
+        ItemData currentItemData = slots[_currentIndex].AssignedInventorySlot.ItemData;
+        if (currentItemData != null && currentItemData is ItemPlacement)
+        {
+            slots[_currentIndex].AssignedInventorySlot.RemoveFromStack(1);
+            RefreshStaticDisplay();
+        }
     }
 
     void ChangeIndex(int direction)

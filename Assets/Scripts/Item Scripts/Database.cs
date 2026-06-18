@@ -7,9 +7,11 @@ using UnityEngine;
 public class Database : ScriptableObject
 {
     [SerializeField] private List<ItemData> _itemDatabase;
-
-    public List<ItemData> ItemDatabase => _itemDatabase;
-
+    
+    public List<ItemPlacement> ItemPlacements => _itemDatabase
+        .OfType<ItemPlacement>()
+        .ToList();
+    
     [ContextMenu("Set IDs")]
     public void SetItemIDs()
     {

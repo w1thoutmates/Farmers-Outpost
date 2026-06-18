@@ -5,69 +5,60 @@ using UnityEngine;
 [ExecuteInEditMode]
 public class UniqueID : MonoBehaviour
 {
-    [ReadOnly] [SerializeField] private string _id;
-
-    private static SerializableDictionary<string, GameObject> _idDatabase = 
-        new SerializableDictionary<string, GameObject>();
+    [ReadOnly, SerializeField] private string _id;
 
     public string ID => _id;
 
     void Awake()
     {
-        InitID();
+        if (Application.isPlaying)
+        {
+            if (string.IsNullOrEmpty(_id))
+            {
+                _id = Guid.NewGuid().ToString();
+            }
+            return;
+        }
+
+#if UNITY_EDITOR
+        VerifyIDInEditor();
+#endif
     }
 
+#if UNITY_EDITOR
     void OnValidate()
     {
-        #if UNITY_EDITOR
-        UnityEditor.EditorApplication.delayCall += InitID;
-        #endif
+        if (Application.isPlaying) return;
+
+        UnityEditor.EditorApplication.delayCall += VerifyIDInEditor;
     }
 
-    void OnDestroy()
+    private void VerifyIDInEditor()
     {
-        if (_idDatabase != null && _idDatabase.ContainsKey(_id)) 
+        if (this == null) return;
+
+        if (string.IsNullOrEmpty(_id))
         {
-            if (_idDatabase[_id] == this.gameObject)
+            _id = Guid.NewGuid().ToString();
+            UnityEditor.SceneManagement.EditorSceneManager.MarkSceneDirty(this.gameObject.scene);
+            return;
+        }
+
+        UniqueID[] allIds = FindObjectsByType<UniqueID>();
+        
+        foreach (var other in allIds)
+        {
+            if (other != this && other._id == this._id)
             {
-                _idDatabase.Remove(_id);
+                if (UnityEditor.Selection.activeGameObject == this.gameObject)
+                {
+                    _id = Guid.NewGuid().ToString();
+                    UnityEditor.SceneManagement.EditorSceneManager.MarkSceneDirty(this.gameObject.scene);
+                    Debug.Log($"[UniqueID] Обнаружен дубликат объекта! Сгенерирован новый ID: {_id}", this.gameObject);
+                    break;
+                }
             }
         }
     }
-
-    private void InitID()
-    {
-        if (this == null) return; 
-
-        if (_idDatabase == null) 
-            _idDatabase = new SerializableDictionary<string, GameObject>();
-
-        if (string.IsNullOrEmpty(_id) || (_idDatabase.ContainsKey(_id) && _idDatabase[_id] != this.gameObject))
-        {
-            Generate();
-        }
-        else if (!_idDatabase.ContainsKey(_id))
-        {
-            _idDatabase.Add(_id, this.gameObject);
-        }
-    }
-
-    void Generate()
-    {
-        if (_idDatabase != null && _idDatabase.ContainsKey(_id) && _idDatabase[_id] == this.gameObject)
-        {
-            _idDatabase.Remove(_id);
-        }
-
-        _id = Guid.NewGuid().ToString();
-        _idDatabase.Add(_id, this.gameObject);
-        
-        #if UNITY_EDITOR
-        if (!Application.isPlaying)
-        {
-            string currentId = _id;
-            UnityEditor.SceneManagement.EditorSceneManager.MarkSceneDirty(this.gameObject.scene);
-        }
-        #endif
-    }
+#endif
 }
