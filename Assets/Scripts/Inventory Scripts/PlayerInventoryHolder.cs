@@ -13,26 +13,26 @@ public class PlayerInventoryHolder : InventoryHolder
         SaveGameManager.data.playerInventory = new InventorySaveData(primaryInventorySystem);
     }
     
-    void Update()
-    {
-        if (Keyboard.current.bKey.wasPressedThisFrame)
-        {
-            if (InventoryUIController.Instance != null)
-            {
-                var backpack = InventoryUIController.Instance.playerBackpackPanel;
-            
-                if (backpack.gameObject.activeInHierarchy)
-                {
-                    backpack.gameObject.SetActive(false);
-                }
-                else
-                {
-                    backpack.gameObject.SetActive(true);
-                    backpack.RefreshDynamicInventory(primaryInventorySystem, offset);
-                }
-            }
-        }
-    }
+    // void Update()
+    // {
+    //     if (Keyboard.current.bKey.wasPressedThisFrame)
+    //     {
+    //         if (InventoryUIController.Instance != null)
+    //         {
+    //             var backpack = InventoryUIController.Instance.playerBackpackPanel;
+    //         
+    //             if (backpack.gameObject.activeInHierarchy)
+    //             {
+    //                 backpack.gameObject.SetActive(false);
+    //             }
+    //             else
+    //             {
+    //                 backpack.gameObject.SetActive(true);
+    //                 backpack.RefreshDynamicInventory(primaryInventorySystem, offset);
+    //             }
+    //         }
+    //     }
+    // }
     
     protected override void LoadInventory(SaveData data)
     {

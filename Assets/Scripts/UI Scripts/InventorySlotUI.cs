@@ -9,6 +9,7 @@ public class InventorySlotUI : MonoBehaviour, IPointerClickHandler
     [SerializeField] private Image itemSprite;
     [SerializeField] private TextMeshProUGUI itemCount;
     [SerializeField] private InventorySlot assignedInventorySlot;
+    [SerializeField] private GameObject _slotHightlight;
 
     private Button button;
 
@@ -72,5 +73,10 @@ public class InventorySlotUI : MonoBehaviour, IPointerClickHandler
         {
             ParentDisplay?.SlotRightClicked(this);
         }
+    }
+
+    public void ToggleHighlight()
+    {
+        _slotHightlight.SetActive(!_slotHightlight.activeInHierarchy);
     }
 }

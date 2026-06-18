@@ -10,6 +10,10 @@ public class Interactor : MonoBehaviour
 
     void Update()
     {
+        if (InventoryUIController.Instance != null && 
+            (InventoryUIController.Instance.inventoryPanel.gameObject.activeInHierarchy || 
+             InventoryUIController.Instance.playerBackpackPanel.gameObject.activeInHierarchy)) return; 
+        
         var colliders = Physics.OverlapSphere(interactionPoint.position, interactionPointRadius, interactionLayer);
 
         if (Keyboard.current.fKey.wasPressedThisFrame)

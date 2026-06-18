@@ -8,6 +8,8 @@ public class InventoryUIController : MonoBehaviour
     
     [FormerlySerializedAs("chestPanel")] public DynamicInventoryDisplay inventoryPanel;
     public DynamicInventoryDisplay playerBackpackPanel;
+    
+    private bool _justOpenedThisFrame;
 
     void Awake()
     {
@@ -29,13 +31,42 @@ public class InventoryUIController : MonoBehaviour
 
     void Update()
     {
-        if (Keyboard.current.escapeKey.wasPressedThisFrame)
+        bool isChestOpen = inventoryPanel.gameObject.activeInHierarchy;
+        bool isBackpackOpen = playerBackpackPanel.gameObject.activeInHierarchy;
+        bool isAnyUIOpen = isChestOpen || isBackpackOpen;
+
+        if (isAnyUIOpen)
         {
-            if (inventoryPanel.gameObject.activeInHierarchy || playerBackpackPanel.gameObject.activeInHierarchy)
+            if (Keyboard.current.escapeKey.wasPressedThisFrame)
             {
                 CloseAllInventories();
+                return;
+            }
+
+            if (Keyboard.current.bKey.wasPressedThisFrame)
+            {
+                CloseAllInventories();
+                return;
+            }
+
+            if (Keyboard.current.fKey.wasPressedThisFrame && isChestOpen && !_justOpenedThisFrame)
+            {
+                CloseAllInventories();
+                return;
             }
         }
+        else
+        {
+            if (Keyboard.current.bKey.wasPressedThisFrame)
+            {
+                OpenPlayerBackpackIfClosed();
+            }
+        }
+    }
+
+    void LateUpdate()
+    {
+        _justOpenedThisFrame = false;
     }
 
     void DisplayInventory(InventorySystem invToDisplay, int offset)
@@ -45,11 +76,15 @@ public class InventoryUIController : MonoBehaviour
             CloseAllInventories();
             return;
         }
+        
+        _justOpenedThisFrame = true;
 
         inventoryPanel.gameObject.SetActive(true);
         inventoryPanel.RefreshDynamicInventory(invToDisplay, offset);
 
         OpenPlayerBackpackIfClosed();
+
+        // InputSystem.Update();
     }
 
     void DisplayPlayerBackpack(InventorySystem invToDisplay, int offset)
@@ -66,7 +101,7 @@ public class InventoryUIController : MonoBehaviour
 
         if (playerInventory != null)
         {
-            DisplayPlayerBackpack(playerInventory.PrimaryInventorySystem, 7);
+            DisplayPlayerBackpack(playerInventory.PrimaryInventorySystem, playerInventory.Offset);
         }
     }
 

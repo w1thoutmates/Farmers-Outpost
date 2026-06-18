@@ -111,10 +111,82 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": true
                 },
                 {
-                    ""name"": ""Attack"",
+                    ""name"": ""Hotbar1"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""b09cdc83-328e-4254-b48b-f244a749bb35"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Hotbar2"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""39dc3dd1-9702-4690-b10d-3a4e728f9b15"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Hotbar3"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""65a4baa1-6f9e-4ddf-b441-ddfc9bd08706"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Hotbar4"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""773c61c4-0f16-4f45-9f4d-fc215fd7d1c6"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Hotbar5"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""e153843c-baee-4276-b4b1-03fd53144928"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Hotbar6"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""57d57815-82e7-45e1-850e-ca816e8b4313"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Hotbar7"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""dd380596-342a-4185-bd15-e54b06c31449"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Use Item"",
                     ""type"": ""Button"",
-                    ""id"": ""6c2ab1b8-8984-453a-af3d-a3c78ae1679a"",
-                    ""expectedControlType"": ""Button"",
+                    ""id"": ""0a0c63f3-11e6-4f56-88a5-31dec73e43c3"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Mouse Wheel"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""c3df2ac5-9e18-4c88-8269-61030f5e4a13"",
+                    ""expectedControlType"": ""Axis"",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
@@ -122,53 +194,26 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                 {
                     ""name"": ""Interact"",
                     ""type"": ""Button"",
-                    ""id"": ""852140f2-7766-474d-8707-702459ba45f3"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": ""Hold"",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""Crouch"",
-                    ""type"": ""Button"",
-                    ""id"": ""27c5f898-bc57-4ee1-8800-db469aca5fe3"",
-                    ""expectedControlType"": ""Button"",
+                    ""id"": ""b27e5fa1-5589-4160-81f1-964349d40741"",
+                    ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Jump"",
+                    ""name"": ""Backpack"",
                     ""type"": ""Button"",
-                    ""id"": ""f1ba0d36-48eb-4cd5-b651-1c94a6531f70"",
-                    ""expectedControlType"": ""Button"",
+                    ""id"": ""0df462e3-0017-488c-be70-f23fd17fed02"",
+                    ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Previous"",
+                    ""name"": ""Escape"",
                     ""type"": ""Button"",
-                    ""id"": ""2776c80d-3c14-4091-8c56-d04ced07a2b0"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""Next"",
-                    ""type"": ""Button"",
-                    ""id"": ""b7230bb6-fc9b-4f52-8b25-f5e19cb2c2ba"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""Sprint"",
-                    ""type"": ""Button"",
-                    ""id"": ""641cd816-40e6-41b4-8c3d-04687c349290"",
-                    ""expectedControlType"": ""Button"",
+                    ""id"": ""f6255e67-93f9-4333-baeb-e2326dcc0480"",
+                    ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
@@ -342,221 +387,210 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""143bb1cd-cc10-4eca-a2f0-a3664166fe91"",
-                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""id"": ""8dd887c6-7587-4f4e-8a4a-47e6dc105127"",
+                    ""path"": """",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": "";Gamepad"",
-                    ""action"": ""Attack"",
+                    ""groups"": """",
+                    ""action"": ""Hotbar1"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
-                    ""id"": ""05f6913d-c316-48b2-a6bb-e225f14c7960"",
-                    ""path"": ""<Mouse>/leftButton"",
-                    ""interactions"": """",
+                    ""id"": ""f0d766fa-79fa-46d5-b138-8424646ab078"",
+                    ""path"": ""<Keyboard>/1"",
+                    ""interactions"": ""Press"",
                     ""processors"": """",
-                    ""groups"": "";Keyboard&Mouse"",
-                    ""action"": ""Attack"",
+                    ""groups"": """",
+                    ""action"": ""Hotbar1"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
-                    ""id"": ""886e731e-7071-4ae4-95c0-e61739dad6fd"",
-                    ""path"": ""<Touchscreen>/primaryTouch/tap"",
+                    ""id"": ""ace2e274-3d88-417c-a9fc-afbb26f7e819"",
+                    ""path"": """",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": "";Touch"",
-                    ""action"": ""Attack"",
+                    ""groups"": """",
+                    ""action"": ""Hotbar2"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
-                    ""id"": ""ee3d0cd2-254e-47a7-a8cb-bc94d9658c54"",
-                    ""path"": ""<Joystick>/trigger"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Joystick"",
-                    ""action"": ""Attack"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""8255d333-5683-4943-a58a-ccb207ff1dce"",
-                    ""path"": ""<XRController>/{PrimaryAction}"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""XR"",
-                    ""action"": ""Attack"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""b3c1c7f0-bd20-4ee7-a0f1-899b24bca6d7"",
-                    ""path"": ""<Keyboard>/enter"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Keyboard&Mouse"",
-                    ""action"": ""Attack"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""cbac6039-9c09-46a1-b5f2-4e5124ccb5ed"",
+                    ""id"": ""e9ee505c-a6a4-4741-9f43-9ed72a6a2343"",
                     ""path"": ""<Keyboard>/2"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""Keyboard&Mouse"",
-                    ""action"": ""Next"",
+                    ""groups"": """",
+                    ""action"": ""Hotbar2"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
-                    ""id"": ""e15ca19d-e649-4852-97d5-7fe8ccc44e94"",
-                    ""path"": ""<Gamepad>/dpad/right"",
+                    ""id"": ""50181fbf-e899-4058-9064-ed96918f27f3"",
+                    ""path"": """",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""Gamepad"",
-                    ""action"": ""Next"",
+                    ""groups"": """",
+                    ""action"": ""Hotbar3"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
-                    ""id"": ""f2e9ba44-c423-42a7-ad56-f20975884794"",
-                    ""path"": ""<Keyboard>/leftShift"",
-                    ""interactions"": """",
+                    ""id"": ""5fc0211c-8246-41ac-8fce-8feac8ae6697"",
+                    ""path"": ""<Keyboard>/3"",
+                    ""interactions"": ""Press"",
                     ""processors"": """",
-                    ""groups"": ""Keyboard&Mouse"",
-                    ""action"": ""Sprint"",
+                    ""groups"": """",
+                    ""action"": ""Hotbar3"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
-                    ""id"": ""8cbb2f4b-a784-49cc-8d5e-c010b8c7f4e6"",
-                    ""path"": ""<Gamepad>/leftStickPress"",
+                    ""id"": ""09fa27ae-6ba4-40d4-bc3b-fc6e4c0690e4"",
+                    ""path"": """",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""Gamepad"",
-                    ""action"": ""Sprint"",
+                    ""groups"": """",
+                    ""action"": ""Hotbar4"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
-                    ""id"": ""d8bf24bf-3f2f-4160-a97c-38ec1eb520ba"",
-                    ""path"": ""<XRController>/trigger"",
-                    ""interactions"": """",
+                    ""id"": ""27bf392f-2cb1-4f07-bffe-fa00b864fcf6"",
+                    ""path"": ""<Keyboard>/4"",
+                    ""interactions"": ""Press"",
                     ""processors"": """",
-                    ""groups"": ""XR"",
-                    ""action"": ""Sprint"",
+                    ""groups"": """",
+                    ""action"": ""Hotbar4"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
-                    ""id"": ""eb40bb66-4559-4dfa-9a2f-820438abb426"",
-                    ""path"": ""<Keyboard>/space"",
+                    ""id"": ""8e174610-0d76-48ff-b0f6-7abf9804c2b9"",
+                    ""path"": """",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""Keyboard&Mouse"",
-                    ""action"": ""Jump"",
+                    ""groups"": """",
+                    ""action"": ""Hotbar5"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
-                    ""id"": ""daba33a1-ad0c-4742-a909-43ad1cdfbeb6"",
-                    ""path"": ""<Gamepad>/buttonSouth"",
-                    ""interactions"": """",
+                    ""id"": ""003b5551-e394-4e5c-b575-37d4230fb141"",
+                    ""path"": ""<Keyboard>/5"",
+                    ""interactions"": ""Press"",
                     ""processors"": """",
-                    ""groups"": ""Gamepad"",
-                    ""action"": ""Jump"",
+                    ""groups"": """",
+                    ""action"": ""Hotbar5"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
-                    ""id"": ""603f3daf-40bd-4854-8724-93e8017f59e3"",
-                    ""path"": ""<XRController>/secondaryButton"",
+                    ""id"": ""56623fcd-4284-4389-9870-69b9766f7844"",
+                    ""path"": """",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""XR"",
-                    ""action"": ""Jump"",
+                    ""groups"": """",
+                    ""action"": ""Hotbar6"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
-                    ""id"": ""1534dc16-a6aa-499d-9c3a-22b47347b52a"",
-                    ""path"": ""<Keyboard>/1"",
-                    ""interactions"": """",
+                    ""id"": ""a74925ab-2f9f-4123-8e99-4c6f4ab36557"",
+                    ""path"": ""<Keyboard>/6"",
+                    ""interactions"": ""Press"",
                     ""processors"": """",
-                    ""groups"": ""Keyboard&Mouse"",
-                    ""action"": ""Previous"",
+                    ""groups"": """",
+                    ""action"": ""Hotbar6"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
-                    ""id"": ""25060bbd-a3a6-476e-8fba-45ae484aad05"",
-                    ""path"": ""<Gamepad>/dpad/left"",
+                    ""id"": ""e8c69e41-a947-4955-9709-b2bfb3a542e3"",
+                    ""path"": """",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""Gamepad"",
-                    ""action"": ""Previous"",
+                    ""groups"": """",
+                    ""action"": ""Hotbar7"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
-                    ""id"": ""1c04ea5f-b012-41d1-a6f7-02e963b52893"",
-                    ""path"": ""<Keyboard>/e"",
+                    ""id"": ""f210f5f6-6bdf-406d-aeb6-ed3055b028d3"",
+                    ""path"": ""<Keyboard>/7"",
+                    ""interactions"": ""Press"",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Hotbar7"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""45f2e4b5-9a75-40be-90c2-245449b12dae"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": ""Press"",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Use Item"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""58ab7cd7-04b5-4788-9810-5799b5502fc6"",
+                    ""path"": ""<Mouse>/scroll/y"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""Keyboard&Mouse"",
+                    ""groups"": """",
+                    ""action"": ""Mouse Wheel"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b611edd9-d33b-46b8-aaa2-d25525baee15"",
+                    ""path"": ""<Keyboard>/f"",
+                    ""interactions"": ""Press"",
+                    ""processors"": """",
+                    ""groups"": """",
                     ""action"": ""Interact"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
-                    ""id"": ""b3f66d0b-7751-423f-908b-a11c5bd95930"",
-                    ""path"": ""<Gamepad>/buttonNorth"",
-                    ""interactions"": """",
+                    ""id"": ""3b729183-0d76-4d9c-a1f6-400ad73099a5"",
+                    ""path"": ""<Keyboard>/b"",
+                    ""interactions"": ""Press"",
                     ""processors"": """",
-                    ""groups"": ""Gamepad"",
-                    ""action"": ""Interact"",
+                    ""groups"": """",
+                    ""action"": ""Backpack"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
-                    ""id"": ""4f4649ac-64a8-4a73-af11-b3faef356a4d"",
-                    ""path"": ""<Gamepad>/buttonEast"",
-                    ""interactions"": """",
+                    ""id"": ""d7c4750d-44b8-4294-9158-c966a12d86c4"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": ""Press"",
                     ""processors"": """",
-                    ""groups"": ""Gamepad"",
-                    ""action"": ""Crouch"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""36e52cba-0905-478e-a818-f4bfcb9f3b9a"",
-                    ""path"": ""<Keyboard>/c"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Keyboard&Mouse"",
-                    ""action"": ""Crouch"",
+                    ""groups"": """",
+                    ""action"": ""Escape"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1205,13 +1239,18 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
         m_Player_Move = m_Player.FindAction("Move", throwIfNotFound: true);
         m_Player_Look = m_Player.FindAction("Look", throwIfNotFound: true);
-        m_Player_Attack = m_Player.FindAction("Attack", throwIfNotFound: true);
+        m_Player_Hotbar1 = m_Player.FindAction("Hotbar1", throwIfNotFound: true);
+        m_Player_Hotbar2 = m_Player.FindAction("Hotbar2", throwIfNotFound: true);
+        m_Player_Hotbar3 = m_Player.FindAction("Hotbar3", throwIfNotFound: true);
+        m_Player_Hotbar4 = m_Player.FindAction("Hotbar4", throwIfNotFound: true);
+        m_Player_Hotbar5 = m_Player.FindAction("Hotbar5", throwIfNotFound: true);
+        m_Player_Hotbar6 = m_Player.FindAction("Hotbar6", throwIfNotFound: true);
+        m_Player_Hotbar7 = m_Player.FindAction("Hotbar7", throwIfNotFound: true);
+        m_Player_UseItem = m_Player.FindAction("Use Item", throwIfNotFound: true);
+        m_Player_MouseWheel = m_Player.FindAction("Mouse Wheel", throwIfNotFound: true);
         m_Player_Interact = m_Player.FindAction("Interact", throwIfNotFound: true);
-        m_Player_Crouch = m_Player.FindAction("Crouch", throwIfNotFound: true);
-        m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
-        m_Player_Previous = m_Player.FindAction("Previous", throwIfNotFound: true);
-        m_Player_Next = m_Player.FindAction("Next", throwIfNotFound: true);
-        m_Player_Sprint = m_Player.FindAction("Sprint", throwIfNotFound: true);
+        m_Player_Backpack = m_Player.FindAction("Backpack", throwIfNotFound: true);
+        m_Player_Escape = m_Player.FindAction("Escape", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -1312,13 +1351,18 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
     private List<IPlayerActions> m_PlayerActionsCallbackInterfaces = new List<IPlayerActions>();
     private readonly InputAction m_Player_Move;
     private readonly InputAction m_Player_Look;
-    private readonly InputAction m_Player_Attack;
+    private readonly InputAction m_Player_Hotbar1;
+    private readonly InputAction m_Player_Hotbar2;
+    private readonly InputAction m_Player_Hotbar3;
+    private readonly InputAction m_Player_Hotbar4;
+    private readonly InputAction m_Player_Hotbar5;
+    private readonly InputAction m_Player_Hotbar6;
+    private readonly InputAction m_Player_Hotbar7;
+    private readonly InputAction m_Player_UseItem;
+    private readonly InputAction m_Player_MouseWheel;
     private readonly InputAction m_Player_Interact;
-    private readonly InputAction m_Player_Crouch;
-    private readonly InputAction m_Player_Jump;
-    private readonly InputAction m_Player_Previous;
-    private readonly InputAction m_Player_Next;
-    private readonly InputAction m_Player_Sprint;
+    private readonly InputAction m_Player_Backpack;
+    private readonly InputAction m_Player_Escape;
     /// <summary>
     /// Provides access to input actions defined in input action map "Player".
     /// </summary>
@@ -1339,33 +1383,53 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         /// </summary>
         public InputAction @Look => m_Wrapper.m_Player_Look;
         /// <summary>
-        /// Provides access to the underlying input action "Player/Attack".
+        /// Provides access to the underlying input action "Player/Hotbar1".
         /// </summary>
-        public InputAction @Attack => m_Wrapper.m_Player_Attack;
+        public InputAction @Hotbar1 => m_Wrapper.m_Player_Hotbar1;
+        /// <summary>
+        /// Provides access to the underlying input action "Player/Hotbar2".
+        /// </summary>
+        public InputAction @Hotbar2 => m_Wrapper.m_Player_Hotbar2;
+        /// <summary>
+        /// Provides access to the underlying input action "Player/Hotbar3".
+        /// </summary>
+        public InputAction @Hotbar3 => m_Wrapper.m_Player_Hotbar3;
+        /// <summary>
+        /// Provides access to the underlying input action "Player/Hotbar4".
+        /// </summary>
+        public InputAction @Hotbar4 => m_Wrapper.m_Player_Hotbar4;
+        /// <summary>
+        /// Provides access to the underlying input action "Player/Hotbar5".
+        /// </summary>
+        public InputAction @Hotbar5 => m_Wrapper.m_Player_Hotbar5;
+        /// <summary>
+        /// Provides access to the underlying input action "Player/Hotbar6".
+        /// </summary>
+        public InputAction @Hotbar6 => m_Wrapper.m_Player_Hotbar6;
+        /// <summary>
+        /// Provides access to the underlying input action "Player/Hotbar7".
+        /// </summary>
+        public InputAction @Hotbar7 => m_Wrapper.m_Player_Hotbar7;
+        /// <summary>
+        /// Provides access to the underlying input action "Player/UseItem".
+        /// </summary>
+        public InputAction @UseItem => m_Wrapper.m_Player_UseItem;
+        /// <summary>
+        /// Provides access to the underlying input action "Player/MouseWheel".
+        /// </summary>
+        public InputAction @MouseWheel => m_Wrapper.m_Player_MouseWheel;
         /// <summary>
         /// Provides access to the underlying input action "Player/Interact".
         /// </summary>
         public InputAction @Interact => m_Wrapper.m_Player_Interact;
         /// <summary>
-        /// Provides access to the underlying input action "Player/Crouch".
+        /// Provides access to the underlying input action "Player/Backpack".
         /// </summary>
-        public InputAction @Crouch => m_Wrapper.m_Player_Crouch;
+        public InputAction @Backpack => m_Wrapper.m_Player_Backpack;
         /// <summary>
-        /// Provides access to the underlying input action "Player/Jump".
+        /// Provides access to the underlying input action "Player/Escape".
         /// </summary>
-        public InputAction @Jump => m_Wrapper.m_Player_Jump;
-        /// <summary>
-        /// Provides access to the underlying input action "Player/Previous".
-        /// </summary>
-        public InputAction @Previous => m_Wrapper.m_Player_Previous;
-        /// <summary>
-        /// Provides access to the underlying input action "Player/Next".
-        /// </summary>
-        public InputAction @Next => m_Wrapper.m_Player_Next;
-        /// <summary>
-        /// Provides access to the underlying input action "Player/Sprint".
-        /// </summary>
-        public InputAction @Sprint => m_Wrapper.m_Player_Sprint;
+        public InputAction @Escape => m_Wrapper.m_Player_Escape;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -1398,27 +1462,42 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @Look.started += instance.OnLook;
             @Look.performed += instance.OnLook;
             @Look.canceled += instance.OnLook;
-            @Attack.started += instance.OnAttack;
-            @Attack.performed += instance.OnAttack;
-            @Attack.canceled += instance.OnAttack;
+            @Hotbar1.started += instance.OnHotbar1;
+            @Hotbar1.performed += instance.OnHotbar1;
+            @Hotbar1.canceled += instance.OnHotbar1;
+            @Hotbar2.started += instance.OnHotbar2;
+            @Hotbar2.performed += instance.OnHotbar2;
+            @Hotbar2.canceled += instance.OnHotbar2;
+            @Hotbar3.started += instance.OnHotbar3;
+            @Hotbar3.performed += instance.OnHotbar3;
+            @Hotbar3.canceled += instance.OnHotbar3;
+            @Hotbar4.started += instance.OnHotbar4;
+            @Hotbar4.performed += instance.OnHotbar4;
+            @Hotbar4.canceled += instance.OnHotbar4;
+            @Hotbar5.started += instance.OnHotbar5;
+            @Hotbar5.performed += instance.OnHotbar5;
+            @Hotbar5.canceled += instance.OnHotbar5;
+            @Hotbar6.started += instance.OnHotbar6;
+            @Hotbar6.performed += instance.OnHotbar6;
+            @Hotbar6.canceled += instance.OnHotbar6;
+            @Hotbar7.started += instance.OnHotbar7;
+            @Hotbar7.performed += instance.OnHotbar7;
+            @Hotbar7.canceled += instance.OnHotbar7;
+            @UseItem.started += instance.OnUseItem;
+            @UseItem.performed += instance.OnUseItem;
+            @UseItem.canceled += instance.OnUseItem;
+            @MouseWheel.started += instance.OnMouseWheel;
+            @MouseWheel.performed += instance.OnMouseWheel;
+            @MouseWheel.canceled += instance.OnMouseWheel;
             @Interact.started += instance.OnInteract;
             @Interact.performed += instance.OnInteract;
             @Interact.canceled += instance.OnInteract;
-            @Crouch.started += instance.OnCrouch;
-            @Crouch.performed += instance.OnCrouch;
-            @Crouch.canceled += instance.OnCrouch;
-            @Jump.started += instance.OnJump;
-            @Jump.performed += instance.OnJump;
-            @Jump.canceled += instance.OnJump;
-            @Previous.started += instance.OnPrevious;
-            @Previous.performed += instance.OnPrevious;
-            @Previous.canceled += instance.OnPrevious;
-            @Next.started += instance.OnNext;
-            @Next.performed += instance.OnNext;
-            @Next.canceled += instance.OnNext;
-            @Sprint.started += instance.OnSprint;
-            @Sprint.performed += instance.OnSprint;
-            @Sprint.canceled += instance.OnSprint;
+            @Backpack.started += instance.OnBackpack;
+            @Backpack.performed += instance.OnBackpack;
+            @Backpack.canceled += instance.OnBackpack;
+            @Escape.started += instance.OnEscape;
+            @Escape.performed += instance.OnEscape;
+            @Escape.canceled += instance.OnEscape;
         }
 
         /// <summary>
@@ -1436,27 +1515,42 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @Look.started -= instance.OnLook;
             @Look.performed -= instance.OnLook;
             @Look.canceled -= instance.OnLook;
-            @Attack.started -= instance.OnAttack;
-            @Attack.performed -= instance.OnAttack;
-            @Attack.canceled -= instance.OnAttack;
+            @Hotbar1.started -= instance.OnHotbar1;
+            @Hotbar1.performed -= instance.OnHotbar1;
+            @Hotbar1.canceled -= instance.OnHotbar1;
+            @Hotbar2.started -= instance.OnHotbar2;
+            @Hotbar2.performed -= instance.OnHotbar2;
+            @Hotbar2.canceled -= instance.OnHotbar2;
+            @Hotbar3.started -= instance.OnHotbar3;
+            @Hotbar3.performed -= instance.OnHotbar3;
+            @Hotbar3.canceled -= instance.OnHotbar3;
+            @Hotbar4.started -= instance.OnHotbar4;
+            @Hotbar4.performed -= instance.OnHotbar4;
+            @Hotbar4.canceled -= instance.OnHotbar4;
+            @Hotbar5.started -= instance.OnHotbar5;
+            @Hotbar5.performed -= instance.OnHotbar5;
+            @Hotbar5.canceled -= instance.OnHotbar5;
+            @Hotbar6.started -= instance.OnHotbar6;
+            @Hotbar6.performed -= instance.OnHotbar6;
+            @Hotbar6.canceled -= instance.OnHotbar6;
+            @Hotbar7.started -= instance.OnHotbar7;
+            @Hotbar7.performed -= instance.OnHotbar7;
+            @Hotbar7.canceled -= instance.OnHotbar7;
+            @UseItem.started -= instance.OnUseItem;
+            @UseItem.performed -= instance.OnUseItem;
+            @UseItem.canceled -= instance.OnUseItem;
+            @MouseWheel.started -= instance.OnMouseWheel;
+            @MouseWheel.performed -= instance.OnMouseWheel;
+            @MouseWheel.canceled -= instance.OnMouseWheel;
             @Interact.started -= instance.OnInteract;
             @Interact.performed -= instance.OnInteract;
             @Interact.canceled -= instance.OnInteract;
-            @Crouch.started -= instance.OnCrouch;
-            @Crouch.performed -= instance.OnCrouch;
-            @Crouch.canceled -= instance.OnCrouch;
-            @Jump.started -= instance.OnJump;
-            @Jump.performed -= instance.OnJump;
-            @Jump.canceled -= instance.OnJump;
-            @Previous.started -= instance.OnPrevious;
-            @Previous.performed -= instance.OnPrevious;
-            @Previous.canceled -= instance.OnPrevious;
-            @Next.started -= instance.OnNext;
-            @Next.performed -= instance.OnNext;
-            @Next.canceled -= instance.OnNext;
-            @Sprint.started -= instance.OnSprint;
-            @Sprint.performed -= instance.OnSprint;
-            @Sprint.canceled -= instance.OnSprint;
+            @Backpack.started -= instance.OnBackpack;
+            @Backpack.performed -= instance.OnBackpack;
+            @Backpack.canceled -= instance.OnBackpack;
+            @Escape.started -= instance.OnEscape;
+            @Escape.performed -= instance.OnEscape;
+            @Escape.canceled -= instance.OnEscape;
         }
 
         /// <summary>
@@ -1879,12 +1973,68 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnLook(InputAction.CallbackContext context);
         /// <summary>
-        /// Method invoked when associated input action "Attack" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// Method invoked when associated input action "Hotbar1" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>
         /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-        void OnAttack(InputAction.CallbackContext context);
+        void OnHotbar1(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Hotbar2" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnHotbar2(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Hotbar3" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnHotbar3(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Hotbar4" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnHotbar4(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Hotbar5" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnHotbar5(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Hotbar6" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnHotbar6(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Hotbar7" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnHotbar7(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Use Item" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnUseItem(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Mouse Wheel" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnMouseWheel(InputAction.CallbackContext context);
         /// <summary>
         /// Method invoked when associated input action "Interact" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>
@@ -1893,40 +2043,19 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnInteract(InputAction.CallbackContext context);
         /// <summary>
-        /// Method invoked when associated input action "Crouch" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// Method invoked when associated input action "Backpack" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>
         /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-        void OnCrouch(InputAction.CallbackContext context);
+        void OnBackpack(InputAction.CallbackContext context);
         /// <summary>
-        /// Method invoked when associated input action "Jump" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// Method invoked when associated input action "Escape" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>
         /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-        void OnJump(InputAction.CallbackContext context);
-        /// <summary>
-        /// Method invoked when associated input action "Previous" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
-        /// </summary>
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-        void OnPrevious(InputAction.CallbackContext context);
-        /// <summary>
-        /// Method invoked when associated input action "Next" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
-        /// </summary>
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-        void OnNext(InputAction.CallbackContext context);
-        /// <summary>
-        /// Method invoked when associated input action "Sprint" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
-        /// </summary>
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-        void OnSprint(InputAction.CallbackContext context);
+        void OnEscape(InputAction.CallbackContext context);
     }
     /// <summary>
     /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "UI" which allows adding and removing callbacks.

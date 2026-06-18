@@ -4,14 +4,14 @@ using UnityEngine;
 public class StaticInventoryDisplay : InventoryDisplay
 {
     [SerializeField] private InventoryHolder inventoryHolder;
-    [SerializeField] private InventorySlotUI[] slots;
+    [SerializeField] protected InventorySlotUI[] slots;
 
-    void OnEnable()
+    protected virtual void OnEnable()
     {
         PlayerInventoryHolder.OnPlayerInventoryChanged += RefreshStaticDisplay;
     }
 
-    void OnDisable()
+    protected virtual void OnDisable()
     {
         PlayerInventoryHolder.OnPlayerInventoryChanged -= RefreshStaticDisplay;
         if (inventorySystem != null)
