@@ -31,53 +31,120 @@ public class Interactor : MonoBehaviour
     {
         _currentOpenInventory = null;
     }
-
+    
     void Update()
     {
         if (Keyboard.current.fKey.wasPressedThisFrame)
         {
-            var colliders = Physics.OverlapSphere(interactionPoint.position, interactionPointRadius, interactionLayer);
-            
-            IInteractable targetInteractable = null;
-            InventoryHolder targetInventoryHolder = null;
+            InteractClosest();
+        }
 
-            for (int i = 0; i < colliders.Length; i++)
-            {
-                var interactable = colliders[i].GetComponent<IInteractable>();
-                if (interactable != null)
-                {
-                    targetInteractable = interactable;
-                    targetInventoryHolder = colliders[i].GetComponent<InventoryHolder>();
-                    
-                    if (targetInventoryHolder != null && _currentOpenInventory != null)
-                    {
-                        if (targetInventoryHolder.PrimaryInventorySystem != _currentOpenInventory)
-                        {
-                            break; 
-                        }
-                    }
-                }
-            }
+        if (Mouse.current.leftButton.wasPressedThisFrame)
+        {
+            InteractMouse();
+        }
+    }
+    
+    void InteractMouse()
+    {
+        Plane plane = new Plane(Vector3.up, interactionPoint.position);
+        Ray ray = Camera.main.ScreenPointToRay(Mouse.current.position.ReadValue());
 
-            if (targetInteractable != null)
-            {
-                if (targetInventoryHolder != null && _currentOpenInventory != null && 
-                    targetInventoryHolder.PrimaryInventorySystem == _currentOpenInventory)
-                {
-                    InventoryUIController.Instance.CloseAllInventories();
-                    return;
-                }
+        if (!plane.Raycast(ray, out float enter))
+            return;
 
-                StartInteraction(targetInteractable);
-            }
-            else
+        Vector3 worldPoint = ray.GetPoint(enter);
+
+        Collider[] colliders = Physics.OverlapSphere(
+            interactionPoint.position,
+            interactionPointRadius,
+            interactionLayer);
+
+        IInteractable best = null;
+        InventoryHolder bestInventory = null;
+        float bestDist = float.MaxValue;
+
+        foreach (var col in colliders)
+        {
+            var interactable = col.GetComponent<IInteractable>();
+            if (interactable == null)
+                continue;
+
+            float dist = Vector3.Distance(worldPoint, col.transform.position);
+
+            if (dist < bestDist)
             {
-                if (_currentOpenInventory != null)
-                {
-                    InventoryUIController.Instance.CloseAllInventories();
-                }
+                bestDist = dist;
+                best = interactable;
+                bestInventory = col.GetComponent<InventoryHolder>();
             }
         }
+
+        if (best == null)
+        {
+            if (_currentOpenInventory != null)
+            {
+                InventoryUIController.Instance.CloseAllInventories();
+            }
+            return;
+        }
+
+        if (bestInventory != null && _currentOpenInventory != null)
+        {
+            if (bestInventory.PrimaryInventorySystem == _currentOpenInventory)
+            {
+                if (MouseItemData.IsPointerOverUIObject()) return;
+                
+                InventoryUIController.Instance.CloseAllInventories();
+                return;
+            }
+        }
+
+        if (!MouseItemData.IsPointerOverUIObject())
+            StartInteraction(best);
+    }
+
+    void InteractClosest()
+    {
+        var colliders = Physics.OverlapSphere(
+            interactionPoint.position,
+            interactionPointRadius,
+            interactionLayer);
+
+        IInteractable target = null;
+        InventoryHolder targetInventory = null;
+
+        foreach (var col in colliders)
+        {
+            var interactable = col.GetComponent<IInteractable>();
+            if (interactable == null)
+                continue;
+
+            target = interactable;
+            targetInventory = col.GetComponent<InventoryHolder>();
+
+            break;
+        }
+
+        if (target == null)
+        {
+            if (_currentOpenInventory != null)
+            {
+                InventoryUIController.Instance.CloseAllInventories();
+            }
+            return;
+        }
+
+        if (targetInventory != null && _currentOpenInventory != null)
+        {
+            if (targetInventory.PrimaryInventorySystem == _currentOpenInventory)
+            {
+                InventoryUIController.Instance.CloseAllInventories();
+                return;
+            }
+        }
+
+        StartInteraction(target);
     }
 
     void StartInteraction(IInteractable interactable)

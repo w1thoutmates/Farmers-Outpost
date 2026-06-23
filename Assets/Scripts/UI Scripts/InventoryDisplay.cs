@@ -178,7 +178,7 @@ public abstract class InventoryDisplay : MonoBehaviour
 
     void HandleShiftClick(InventorySlotUI clickedUISlot, bool isLeftClick)
     {
-        InventorySystem targetSystem = GetTargetInvetorySystem();
+        InventorySystem targetSystem = GetTargetInventorySystem();
         if (targetSystem == null) return;
 
         InventorySlot sourceSlot = clickedUISlot.AssignedInventorySlot;
@@ -267,7 +267,7 @@ public abstract class InventoryDisplay : MonoBehaviour
         inventorySystem.OnInventorySlotChanged?.Invoke(sourceSlot);
     }
 
-    InventorySystem GetTargetInvetorySystem()
+    InventorySystem GetTargetInventorySystem()
     {
         if (InventoryUIController.Instance == null) return null;
 

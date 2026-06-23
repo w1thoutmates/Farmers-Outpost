@@ -101,6 +101,16 @@ public class HotbarDisplay : StaticInventoryDisplay
         if (_playerInputActions.Player.MouseWheel.ReadValue<float>() > 0.1f) ChangeIndex(1);
         if (_playerInputActions.Player.MouseWheel.ReadValue<float>() < -0.1f) ChangeIndex(-1);
         
+        if (InventoryUIController.Instance.IsAnyInventoryOpen)
+        {
+            if (PlacementSystem.Instance.IsPlacementModeActive)
+            {
+                PlacementSystem.Instance.StopPlacement();
+            }
+
+            return;
+        }
+        
         if (slots[_currentIndex].AssignedInventorySlot.ItemData is ItemPlacement itemPlacement)
         {
             if (!PlacementSystem.Instance.IsPlacementModeActive)
@@ -156,5 +166,11 @@ public class HotbarDisplay : StaticInventoryDisplay
         
         _currentIndex = index;
         slots[_currentIndex].ToggleHighlight();
+        
+        if (slots[_currentIndex].AssignedInventorySlot.ItemData is ItemPlacement itemPlacement)
+        {
+            PlacementSystem.Instance.ChangeSelectedObjectIndex(
+                PlacementSystem.Instance.database.ItemPlacements.FindIndex(data => data.id == itemPlacement.id));
+        }
     }
 }

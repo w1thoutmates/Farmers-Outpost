@@ -12,6 +12,10 @@ public class InventoryUIController : MonoBehaviour
     
     public static UnityAction<InventorySystem> OnChestInventoryOpened;
     public static UnityAction OnChestInventoryClosed;
+    
+    public bool IsAnyInventoryOpen =>
+        inventoryPanel.gameObject.activeInHierarchy ||
+        playerBackpackPanel.gameObject.activeInHierarchy;
 
     void Awake()
     {

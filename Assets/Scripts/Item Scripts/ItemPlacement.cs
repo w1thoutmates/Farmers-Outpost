@@ -9,8 +9,8 @@ public class ItemPlacement : ItemData
 
     public override void Use()
     {
-        base.Use();
+        if (!PlacementSystem.Instance.CanPlaceCurrentObject()) return;
         
-        EventBus.NotifyPlacementItemUsed();
+        base.Use();
     }
 }
