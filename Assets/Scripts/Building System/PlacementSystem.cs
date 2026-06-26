@@ -10,55 +10,47 @@ public class PlacementSystem : MonoBehaviour
     
     public bool IsPlacementModeActive => _isPlacementModeActive;
     
-    [SerializeField] private GameObject mouseIndicator;
-    [SerializeField] private GameObject cellIndicator;
     [SerializeField] private InputManager inputManager;
     [SerializeField] private Grid grid;
 
     [SerializeField] public Database database;
     [SerializeField] private GameObject gridVisualisation;
 
-    private GridData objectPlacementData;
-    private Renderer previewRenderer;
+    [SerializeField] private PreviewSystem preview;
+    
+    [SerializeField] private ObjectPlacer objectPlacer;
 
-    private List<GameObject> placedGameObjects = new();
-
-    private int _selectedObjectIndex { get; set; } = -1;
+    private Vector3Int _lastDetectedPosition = Vector3Int.zero; 
+    private GridData _objectPlacementData;
+    private IBuildingState _buildingState;
 
     void Update()
     {
-        if (_selectedObjectIndex < 0)
+        if (_buildingState == null)
             return;
         
         Vector3 mousePosition = inputManager.GetSelectedMapPosition();
         float snappedY = Mathf.Round(mousePosition.y * 2f) / 2f;
         Vector3 correctedPosition = new Vector3(mousePosition.x, snappedY, mousePosition.z);
         Vector3Int gridPosition = grid.WorldToCell(correctedPosition);
-        
-        bool placementValidity = CheckPlacementValidity(gridPosition, _selectedObjectIndex);
-        previewRenderer.material.color = placementValidity ? Color.white : Color.red;
-        
-        mouseIndicator.transform.position = mousePosition;
-        Vector3 cellWorldPos = grid.CellToWorld(gridPosition);
-        cellIndicator.transform.position = cellWorldPos;
-    }
 
-    private bool CheckPlacementValidity(Vector3Int gridPosition, int selectedObjectIndex)
-    {
-        return objectPlacementData.CanPlaceObjectAt(gridPosition, database.ItemPlacements[selectedObjectIndex].size);
+        if (_lastDetectedPosition != gridPosition)
+        {
+            _buildingState.UpdateState(gridPosition);
+            _lastDetectedPosition = gridPosition;
+        }
     }
 
     void Awake()
     {
         if (Instance == null) Instance = this;
         else Destroy(gameObject);
-        
-        previewRenderer = cellIndicator.GetComponentInChildren<Renderer>();
     }
     
     void Start()
     {
-        objectPlacementData = new();
+        _objectPlacementData = new();
+        gridVisualisation.gameObject.SetActive(false);
         StopPlacement();
     }
     
@@ -69,17 +61,11 @@ public class PlacementSystem : MonoBehaviour
             return;
         
         StopPlacement();
-        _selectedObjectIndex = database.ItemPlacements.FindIndex(data => data.id == id);
-
-        if (_selectedObjectIndex < 0)
-        {
-            Debug.LogError($"No ID found {id}");
-            return;
-        }
-        
         _isPlacementModeActive = true;
         gridVisualisation.SetActive(true);
-        cellIndicator.SetActive(true);
+
+        _buildingState = new PlacementState(id, grid, preview, database, _objectPlacementData, objectPlacer);
+        
         inputManager.OnClicked += PlaceStructure;
         inputManager.OnExit += StopPlacement;
     }
@@ -96,38 +82,30 @@ public class PlacementSystem : MonoBehaviour
         Vector3 correctedPosition = new Vector3(mousePosition.x, snappedY, mousePosition.z);
         Vector3Int gridPosition = grid.WorldToCell(correctedPosition);
 
-        bool placementValidity = CheckPlacementValidity(gridPosition, _selectedObjectIndex);
-        if (!placementValidity)
-            return;
+        bool placed = _buildingState.OnAction(gridPosition);
         
-        GameObject newObject = Instantiate(database.ItemPlacements[_selectedObjectIndex].prefab);
-        Vector3 cellWorldPos = grid.CellToWorld(gridPosition);
-        newObject.transform.position = cellWorldPos;
-        placedGameObjects.Add(newObject);
-        
-        objectPlacementData.AddObjectAt(
-            gridPosition,
-            database.ItemPlacements[_selectedObjectIndex].size,
-            database.ItemPlacements[_selectedObjectIndex].id,
-            placedGameObjects.Count - 1
-        );
-        
-        EventBus.NotifyPlacementItemUsed();
+        if (placed)
+        {
+            EventBus.NotifyPlacementItemUsed();
+        }
     }
 
     public void StopPlacement()
     {
-        _selectedObjectIndex = -1;
+        if (_buildingState == null) 
+            return;
         _isPlacementModeActive = false;
         gridVisualisation.SetActive(false);
-        cellIndicator.SetActive(false);
+        _buildingState.EndState();
         inputManager.OnClicked -= PlaceStructure;
         inputManager.OnExit -= StopPlacement;
+        _lastDetectedPosition = Vector3Int.zero;
+        _buildingState = null;
     }
     
     public bool CanPlaceCurrentObject()
     {
-        if (_selectedObjectIndex < 0)
+        if (_buildingState == null)
             return false;
 
         Vector3 mousePosition = inputManager.GetSelectedMapPosition();
@@ -135,11 +113,6 @@ public class PlacementSystem : MonoBehaviour
         Vector3 correctedPosition = new Vector3(mousePosition.x, snappedY, mousePosition.z);
         Vector3Int gridPosition = grid.WorldToCell(correctedPosition);
 
-        return CheckPlacementValidity(gridPosition, _selectedObjectIndex);
-    }
-
-    public void ChangeSelectedObjectIndex(int newIndex)
-    {
-        _selectedObjectIndex = newIndex;
+        return _buildingState.CheckPlacementValidity(gridPosition);
     }
 }

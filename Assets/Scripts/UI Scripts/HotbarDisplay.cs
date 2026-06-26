@@ -155,6 +155,15 @@ public class HotbarDisplay : StaticInventoryDisplay
         if (_currentIndex < 0) _currentIndex = _maxIndexSize;
         
         slots[_currentIndex].ToggleHighlight();
+        
+        if (slots[_currentIndex].AssignedInventorySlot.ItemData is ItemPlacement itemPlacement)
+        {
+            PlacementSystem.Instance.StartPlacement(itemPlacement.id);
+        }
+        else
+        {
+            PlacementSystem.Instance.StopPlacement();
+        }
     }
     
     private void SetIndex(int index)
@@ -167,10 +176,19 @@ public class HotbarDisplay : StaticInventoryDisplay
         _currentIndex = index;
         slots[_currentIndex].ToggleHighlight();
         
+        // if (slots[_currentIndex].AssignedInventorySlot.ItemData is ItemPlacement itemPlacement)
+        // {
+        //     PlacementSystem.Instance.ChangeSelectedObjectIndex(
+        //         PlacementSystem.Instance.database.ItemPlacements.FindIndex(data => data.id == itemPlacement.id));
+        // }
+        
         if (slots[_currentIndex].AssignedInventorySlot.ItemData is ItemPlacement itemPlacement)
         {
-            PlacementSystem.Instance.ChangeSelectedObjectIndex(
-                PlacementSystem.Instance.database.ItemPlacements.FindIndex(data => data.id == itemPlacement.id));
+            PlacementSystem.Instance.StartPlacement(itemPlacement.id);
+        }
+        else
+        {
+            PlacementSystem.Instance.StopPlacement();
         }
     }
 }

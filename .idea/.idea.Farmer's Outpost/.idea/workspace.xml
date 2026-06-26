@@ -12,15 +12,11 @@
   <component name="ChangeListManager">
     <list default="true" id="63a57d10-30c5-44a8-8b64-58afc8653d45" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Farmer's Outpost/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Farmer's Outpost/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Graphics/white_edge_with_high_thickness.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Graphics/white_edge_with_high_thickness.png.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/MainScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/MainScene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Farmland placement.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Farmland placement.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Workbench.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Workbench.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Materials/zero_opacity_mat.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Materials/zero_opacity_mat.mat" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Building System/PlacementSystem.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Building System/PlacementSystem.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Interactor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Interactor.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Item Scripts/ItemPlacement.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Item Scripts/ItemPlacement.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI Scripts/HotbarDisplay.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI Scripts/HotbarDisplay.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI Scripts/InventoryDisplay.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI Scripts/InventoryDisplay.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI Scripts/InventoryUIController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI Scripts/InventoryUIController.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,8 +39,10 @@
   }
 }</component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Building System/IBuildingState.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Building System/InputManager.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Building System/PlacementSystem.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Building System/PreviewSystem.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/EventBus.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Item Scripts/ItemPlacement.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/SaveLoad/SaveData.cs" root0="FORCE_HIGHLIGHTING" />
@@ -133,7 +131,10 @@
       <workItem from="1781784237147" duration="13561000" />
       <workItem from="1781799146157" duration="16626000" />
       <workItem from="1782069705176" duration="3871000" />
-      <workItem from="1782245808887" duration="3647000" />
+      <workItem from="1782245808887" duration="3744000" />
+      <workItem from="1782372458597" duration="634000" />
+      <workItem from="1782379740876" duration="7603000" />
+      <workItem from="1782457546839" duration="5183000" />
     </task>
     <task id="LOCAL-00001" summary="Save and Load Система и немного рефакторинга">
       <option name="closed" value="true" />
@@ -191,7 +192,15 @@
       <option name="project" value="LOCAL" />
       <updated>1781819953099</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Рефакторинг">
+      <option name="closed" value="true" />
+      <created>1782249535201</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1782249535201</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -212,9 +221,9 @@
     <MESSAGE value="Добавлена возможность выбрасывать предметы из инвентаря" />
     <MESSAGE value="Доделана полная версия системы инвентаря" />
     <MESSAGE value="Создана база для системы строительства по сетке" />
-    <MESSAGE value="Рефакторинг" />
     <MESSAGE value="Рефакторинг + улучшена система строительства + добавлена шина событий + добавлено использование предметов которые можно разместить" />
-    <option name="LAST_COMMIT_MESSAGE" value="Рефакторинг + улучшена система строительства + добавлена шина событий + добавлено использование предметов которые можно разместить" />
+    <MESSAGE value="Рефакторинг" />
+    <option name="LAST_COMMIT_MESSAGE" value="Рефакторинг" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
