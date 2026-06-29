@@ -11,6 +11,8 @@ public enum GroundType
 
 public class Ground : MonoBehaviour
 {
+    public const int STATIC_OBSTACLE_ID = -99;
+    
     [NonSerialized] public bool isOccupied = false;
     [SerializeField] protected GroundType groundType = GroundType.Grass;
 
@@ -21,19 +23,30 @@ public class Ground : MonoBehaviour
             case GroundType.Grass:
                 isOccupied = false;
                 break;
-            case GroundType.Wall:
-                isOccupied = true;
-                break;
-            case GroundType.Water:
-                isOccupied = true;
-                break;
-            case GroundType.Farmland:
-                isOccupied = true;
-                break;
             default:
                 isOccupied = true;
                 break;
         }
     }
     
+    protected virtual void Start()
+    {
+        if (isOccupied)
+            RegisterInGrid();
+    }
+
+    private void RegisterInGrid()
+    {
+        var placementSystem = PlacementSystem.Instance;
+        if (placementSystem == null) return;
+
+        Grid grid = placementSystem.grid;
+        
+        Vector3Int cell = grid.WorldToCell(transform.position);
+        int id = groundType == GroundType.Farmland 
+            ? placementSystem.FarmlandId 
+            : STATIC_OBSTACLE_ID;
+            
+        placementSystem.RegisterGroundObject(cell, id);
+    }
 }

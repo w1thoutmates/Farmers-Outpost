@@ -20,26 +20,25 @@ public class ToolState : IToolState
         _hoeId = hoeId;
     }
     
-    public void SetTool(int toolId)
+    public void SetTool(ItemTool tool, InventorySlot slot)
     {
         ExitState();
 
-        if (toolId == _hoeId)
+        ExitState();
+
+        IGridAction action = tool.actionType switch
         {
-            _currentToolState = new HoeState(toolId, _grid, _previewSystem, _gridData, _objectPlacer, _database);
-        }
-        // else if () // Другие инструменты
-        // {
-        //     // _currentToolState = new OtherToolState(...);
-        //     //     break;
-        // }
-        else
-        {
-            _currentToolState = null;
-            return;
-        }
-        
-        _currentToolState?.EnterState();
+            ToolActionType.Hoe => new HoeAction(_database),
+            ToolActionType.Watering => new WateringAction(),
+            // ToolActionType.Shovel => new ShovelAction(),
+            _ => null
+        };
+
+        if (action == null) { _currentToolState = null; return; }
+
+        _currentToolState = new GridToolState(action, _grid, _previewSystem, 
+            _gridData, _objectPlacer, _database, slot);
+        _currentToolState.EnterState();
     }
     
     public void EnterState()

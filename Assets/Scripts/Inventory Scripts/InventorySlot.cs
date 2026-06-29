@@ -8,6 +8,7 @@ public class InventorySlot : ISerializationCallbackReceiver
     [SerializeField] private int stackSize;
     [SerializeField] private int itemID = -1;
     private float _durability;
+    private float _watering;
 
     public ItemData ItemData => itemData;
 
@@ -108,6 +109,19 @@ public class InventorySlot : ISerializationCallbackReceiver
         {
             _durability = tool.maxDurability;
         }
+
+        if (source is WateringTool wateringTool)
+        {
+            _watering = wateringTool.maxWaterCapacity;
+        }
+    }
+
+    public bool ReduceWatering(float reduceAmount, WateringTool toolData)
+    {
+        if (_watering <= 0) return false;
+        
+        _watering = Mathf.Clamp(_watering - reduceAmount, 0, toolData.maxWaterCapacity);
+        return true;
     }
 
     public void ReduceDurability(float reduceDurabilityByUse, ItemTool toolData)

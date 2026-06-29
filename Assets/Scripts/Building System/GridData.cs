@@ -60,6 +60,18 @@ public class GridData
         }
         return false;
     }
+    
+    public void RegisterOccupiedPosition(Vector3Int gridPosition, int ID)
+    {
+        if (placementObjects.ContainsKey(gridPosition)) return;
+    
+        PlacementData data = new PlacementData(
+            new List<Vector3Int> { gridPosition }, 
+            ID, 
+            -1
+        );
+        placementObjects[gridPosition] = data;
+    }
 }
 
 public class PlacementData

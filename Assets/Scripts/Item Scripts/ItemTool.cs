@@ -7,6 +7,7 @@ public class ItemTool : ItemData
 {
     public float maxDurability;
     public float reduceDurabilityByUse = 1;
+    public ToolActionType actionType;
     
     public override void Use(InventorySlot slot)
     {
@@ -20,4 +21,13 @@ public class ItemTool : ItemData
         }
     }
     
+}
+
+public enum ToolActionType
+{
+    None,
+    Hoe,
+    Watering,
+    Shovel,
+    Axe
 }

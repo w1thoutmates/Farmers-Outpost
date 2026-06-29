@@ -11,7 +11,7 @@ public class PlacementSystem : MonoBehaviour
     public bool IsPlacementModeActive => _isPlacementModeActive;
     
     [SerializeField] private InputManager inputManager;
-    [SerializeField] private Grid grid;
+    [SerializeField] public Grid grid;
 
     [SerializeField] public Database database;
     [SerializeField] private GameObject gridVisualisation;
@@ -34,7 +34,7 @@ public class PlacementSystem : MonoBehaviour
     private PlacementState _buildingState;
     
     private int _currentPlacementId = -1;
-    private int _currentToolId = -1;
+    private ItemTool _currentTool;
 
     void Update()
     {
@@ -79,11 +79,12 @@ public class PlacementSystem : MonoBehaviour
     {
         if (Instance == null) Instance = this;
         else Destroy(gameObject);
+        
+        _objectPlacementData = new();
     }
     
     void Start()
     {
-        _objectPlacementData = new();
         gridVisualisation.gameObject.SetActive(false);
         toolState = new ToolState(grid, preview, _objectPlacementData, objectPlacer, database, 4);
         StopPlacement();
@@ -152,24 +153,24 @@ public class PlacementSystem : MonoBehaviour
         _lastDetectedPosition = Vector3Int.zero;
     }
     
-    public void StartToolMode(int toolId)
+    public void StartToolMode(ItemTool tool, InventorySlot slot)
     {
         if (InventoryUIController.Instance != null &&
             InventoryUIController.Instance.IsAnyInventoryOpen)
             return;
         
-        if (_isToolModeActive && _currentToolId == toolId)
+        if (_isToolModeActive && _currentTool == tool)
             return;
 
         StopPlacement();
         StopToolMode();
 
-        _currentToolId = toolId;
+        _currentTool = tool;
         _isPlacementModeActive = false;
         _isToolModeActive = true;
         gridVisualisation.SetActive(true);
         
-        toolState.SetTool(toolId);
+        toolState.SetTool(tool, slot);
         toolState.EnterState();
         
         inputManager.OnClicked += UseTool;
@@ -178,8 +179,10 @@ public class PlacementSystem : MonoBehaviour
     
     void UseTool()
     {
+        Debug.Log("UseTool called");
         if (!_isToolModeActive || inputManager.IsPointerOverUIObject())
         {
+            Debug.Log($"UseTool blocked: isToolModeActive={_isToolModeActive}, overUI={inputManager.IsPointerOverUIObject()}");
             return;
         }
         
@@ -189,14 +192,13 @@ public class PlacementSystem : MonoBehaviour
         Vector3Int gridPosition = grid.WorldToCell(correctedPosition);
         
         bool used = toolState.OnAction(gridPosition);
+        Debug.Log($"UseTool result: {used}");
         
         if (used)
         {
             InventorySlot activeSlot = hotbarDisplay.GetActiveSlot();
-            if (activeSlot != null)
-            {
-                EventBus.NotifyToolWasUsed(activeSlot);
-            }
+            Debug.Log($"activeSlot: {activeSlot?.ItemData?.displayName}");
+            EventBus.NotifyToolWasUsed(activeSlot);
         }
     }
     
@@ -213,5 +215,10 @@ public class PlacementSystem : MonoBehaviour
         inputManager.OnClicked -= UseTool;
         inputManager.OnExit -= StopToolMode;
         _lastDetectedPosition = Vector3Int.zero;
+    }
+    
+    public void RegisterGroundObject(Vector3Int gridPosition, int id)
+    {
+        _objectPlacementData.RegisterOccupiedPosition(gridPosition, id);
     }
 }

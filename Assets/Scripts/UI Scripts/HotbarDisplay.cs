@@ -128,7 +128,7 @@ public class HotbarDisplay : StaticInventoryDisplay
         }
         else if (currentSlot.ItemData is ItemTool tool)
         {
-            PlacementSystem.Instance.StartToolMode(tool.id);
+            PlacementSystem.Instance.StartToolMode(tool, currentSlot);
         }
         else
         {
@@ -178,7 +178,7 @@ public class HotbarDisplay : StaticInventoryDisplay
         }
         else if (currentSlot.ItemData is ItemTool tool)
         {
-            PlacementSystem.Instance.StartToolMode(tool.id);
+            PlacementSystem.Instance.StartToolMode(tool, currentSlot);
         }
         else
         {
@@ -211,7 +211,7 @@ public class HotbarDisplay : StaticInventoryDisplay
         }
         else if (currentSlot.ItemData is ItemTool tool)
         {
-            PlacementSystem.Instance.StartToolMode(tool.id);
+            PlacementSystem.Instance.StartToolMode(tool, currentSlot);
         }
         else
         {

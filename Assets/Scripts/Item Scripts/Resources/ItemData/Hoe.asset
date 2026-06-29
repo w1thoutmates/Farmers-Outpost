@@ -20,3 +20,4 @@ MonoBehaviour:
   itemWorld: {fileID: 5762431344021669002, guid: 5a9542080e3f1c043ac73d06206efffc, type: 3}
   maxDurability: 100
   reduceDurabilityByUse: 1
+  actionType: 1
