@@ -1,23 +1,32 @@
+using System;
 using UnityEngine;
 using UnityEngine.Events;
 
-// 1. Создаем статический класс-шину (или синглтон-менеджер)
 public static class EventBus
 {
-    private static UnityAction _onPlacementItemWasUsed;
+    public static event Action<InventorySlot> onPlacementItemWasUsed;
+    public static event Action<InventorySlot> onToolWasDestroyed;
+    public static event Action<InventorySlot> onToolWasUsed;
+    public static event Action onNewDayStarted;
+
+    public static void NotifyPlacementItemUsed(InventorySlot slot)
+    {
+        onPlacementItemWasUsed?.Invoke(slot);
+    }
+
+    public static void NotifyThatToolWasDestroyed(InventorySlot slot)
+    {
+        onToolWasDestroyed?.Invoke(slot);
+    }
     
-    public static void Subscribe(UnityAction listener)
+    public static void NotifyToolWasUsed(InventorySlot slot)
     {
-        _onPlacementItemWasUsed += listener;
+        onToolWasUsed?.Invoke(slot);
     }
 
-    public static void Unsubscribe(UnityAction listener)
+    public static void NotifyNewDayStarted()
     {
-        _onPlacementItemWasUsed -= listener;
-    }
-
-    public static void NotifyPlacementItemUsed()
-    {
-        _onPlacementItemWasUsed?.Invoke();
+        Debug.Log("Новый день начался");
+        onNewDayStarted?.Invoke();
     }
 }

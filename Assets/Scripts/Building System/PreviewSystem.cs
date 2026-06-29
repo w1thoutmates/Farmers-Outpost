@@ -2,6 +2,9 @@ using UnityEngine;
 
 public class PreviewSystem : MonoBehaviour
 {
+    public static PreviewSystem Instance;
+    
+    [Header("Preview Settings")]
     [SerializeField] private float previewYOffset = 0.06f;
     [SerializeField] private GameObject cellIndicator;
     [SerializeField] private Material pfPreviewMaterial;
@@ -9,7 +12,23 @@ public class PreviewSystem : MonoBehaviour
     private GameObject _previewObject;
     private Material _previewMaterialInstance;
     private Renderer _cellIndicatorRenderer;
+    
+    [Header("Tool Settings")]
+    [SerializeField] private Material validRadiusMaterial;
+    [SerializeField] private Material invalidRadiusMaterial;
+    [SerializeField] private Grid grid;
+    
+    private GameObject _toolIndicator;
+    private Renderer _toolIndicatorRenderer;
 
+    void Awake()
+    {
+        if (Instance == null)
+            Instance = this;
+        else 
+            Destroy(gameObject);
+    }
+    
     void Start()
     {
         _previewMaterialInstance = new Material(pfPreviewMaterial);
@@ -94,5 +113,45 @@ public class PreviewSystem : MonoBehaviour
                 pos.y + previewYOffset,
                 pos.z
             );
+    }
+    
+    public void ShowToolIndicator(Vector2Int size)
+    {
+        if (_toolIndicator == null)
+        {
+            _toolIndicator = Instantiate(cellIndicator);
+            _toolIndicatorRenderer = _toolIndicator.GetComponentInChildren<Renderer>();
+        }
+        
+        _toolIndicator.transform.localScale = new Vector3(size.x, size.y, 1);
+        _toolIndicator.SetActive(true);
+        
+        if (_cellIndicatorRenderer != null)
+        {
+            _cellIndicatorRenderer.material.mainTextureScale = size;
+        }
+    }
+    
+    public void UpdateToolIndicator(Vector3 pos, bool validity)
+    {
+        if (_toolIndicator == null) return;
+        
+        _toolIndicator.transform.position = pos;
+        
+        Color color = validity ? Color.white : Color.red;
+        // color.a = 0.5f;
+        
+        if (_toolIndicatorRenderer != null)
+        {
+            _toolIndicatorRenderer.material.color = color;
+        }
+    }
+    
+    public void HideToolIndicator()
+    {
+        if (_toolIndicator != null)
+        {
+            _toolIndicator.SetActive(false);
+        }
     }
 }

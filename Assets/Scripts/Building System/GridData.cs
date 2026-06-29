@@ -46,6 +46,20 @@ public class GridData
         
         return true;
     }
+    
+    public bool IsPositionOccupied(Vector3Int gridPosition)
+    {
+        return placementObjects.ContainsKey(gridPosition);
+    }
+
+    public bool IsPositionHoed(Vector3Int gridPosition)
+    {
+        if (placementObjects.TryGetValue(gridPosition, out PlacementData data))
+        {
+            return data.ID == PlacementSystem.Instance.FarmlandId;
+        }
+        return false;
+    }
 }
 
 public class PlacementData

@@ -12,7 +12,7 @@ public abstract class ItemData : ScriptableObject
     public int maxStackSize;
     public GameObject itemWorld;
 
-    public virtual void Use()
+    public virtual void Use(InventorySlot slot)
     {
         if (EventSystem.current != null && MouseItemData.IsPointerOverUIObject())
         {

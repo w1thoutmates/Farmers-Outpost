@@ -19,25 +19,59 @@ public class PlacementSystem : MonoBehaviour
     [SerializeField] private PreviewSystem preview;
     
     [SerializeField] private ObjectPlacer objectPlacer;
+    
+    [SerializeField] private HotbarDisplay hotbarDisplay;
+    
+    [SerializeField] private ToolState toolState;
+    private bool _isToolModeActive = false;
+    
+    public bool IsToolModeActive => _isToolModeActive;
+    public int FarmlandId => 0;
 
     private Vector3Int _lastDetectedPosition = Vector3Int.zero; 
+    private Vector3Int _lastPlayerCell;
     private GridData _objectPlacementData;
-    private IBuildingState _buildingState;
+    private PlacementState _buildingState;
+    
+    private int _currentPlacementId = -1;
+    private int _currentToolId = -1;
 
     void Update()
     {
-        if (_buildingState == null)
+        if (_buildingState == null && !_isToolModeActive)
             return;
-        
+    
         Vector3 mousePosition = inputManager.GetSelectedMapPosition();
         float snappedY = Mathf.Round(mousePosition.y * 2f) / 2f;
         Vector3 correctedPosition = new Vector3(mousePosition.x, snappedY, mousePosition.z);
         Vector3Int gridPosition = grid.WorldToCell(correctedPosition);
 
-        if (_lastDetectedPosition != gridPosition)
+        Vector3Int playerCell = grid.WorldToCell(Player.Instance.transform.position);
+
+        bool shouldUpdate = false;
+    
+        if (_buildingState != null)
         {
-            _buildingState.UpdateState(gridPosition);
+            shouldUpdate = (_lastDetectedPosition != gridPosition || _lastPlayerCell != playerCell);
+        }
+        else if (_isToolModeActive)
+        {
+            shouldUpdate = (_lastDetectedPosition != gridPosition || _lastPlayerCell != playerCell);
+        }
+    
+        if (shouldUpdate)
+        {
+            if (_buildingState != null)
+            {
+                _buildingState.UpdateState(gridPosition);
+            }
+            else if (_isToolModeActive)
+            {
+                toolState.UpdateState(gridPosition);
+            }
+
             _lastDetectedPosition = gridPosition;
+            _lastPlayerCell = playerCell;
         }
     }
 
@@ -51,6 +85,7 @@ public class PlacementSystem : MonoBehaviour
     {
         _objectPlacementData = new();
         gridVisualisation.gameObject.SetActive(false);
+        toolState = new ToolState(grid, preview, _objectPlacementData, objectPlacer, database, 4);
         StopPlacement();
     }
     
@@ -60,7 +95,13 @@ public class PlacementSystem : MonoBehaviour
             InventoryUIController.Instance.IsAnyInventoryOpen)
             return;
         
+        if (_isPlacementModeActive && _currentPlacementId == id)
+            return;
+
+        StopToolMode();
         StopPlacement();
+        
+        _currentPlacementId = id;
         _isPlacementModeActive = true;
         gridVisualisation.SetActive(true);
 
@@ -86,33 +127,91 @@ public class PlacementSystem : MonoBehaviour
         
         if (placed)
         {
-            EventBus.NotifyPlacementItemUsed();
+            InventorySlot activeSlot = hotbarDisplay.GetActiveSlot();
+            if (activeSlot != null)
+            {
+                EventBus.NotifyPlacementItemUsed(activeSlot);
+            }
         }
     }
-
+    
     public void StopPlacement()
     {
-        if (_buildingState == null) 
-            return;
         _isPlacementModeActive = false;
-        gridVisualisation.SetActive(false);
-        _buildingState.EndState();
+
+        if (_buildingState != null)
+        {
+            _buildingState.EndState();
+            _buildingState = null;
+        }
+
         inputManager.OnClicked -= PlaceStructure;
         inputManager.OnExit -= StopPlacement;
+
+        gridVisualisation.SetActive(false);
         _lastDetectedPosition = Vector3Int.zero;
-        _buildingState = null;
     }
     
-    public bool CanPlaceCurrentObject()
+    public void StartToolMode(int toolId)
     {
-        if (_buildingState == null)
-            return false;
+        if (InventoryUIController.Instance != null &&
+            InventoryUIController.Instance.IsAnyInventoryOpen)
+            return;
+        
+        if (_isToolModeActive && _currentToolId == toolId)
+            return;
 
+        StopPlacement();
+        StopToolMode();
+
+        _currentToolId = toolId;
+        _isPlacementModeActive = false;
+        _isToolModeActive = true;
+        gridVisualisation.SetActive(true);
+        
+        toolState.SetTool(toolId);
+        toolState.EnterState();
+        
+        inputManager.OnClicked += UseTool;
+        inputManager.OnExit += StopToolMode;
+    }
+    
+    void UseTool()
+    {
+        if (!_isToolModeActive || inputManager.IsPointerOverUIObject())
+        {
+            return;
+        }
+        
         Vector3 mousePosition = inputManager.GetSelectedMapPosition();
         float snappedY = Mathf.Round(mousePosition.y * 2f) / 2f;
         Vector3 correctedPosition = new Vector3(mousePosition.x, snappedY, mousePosition.z);
         Vector3Int gridPosition = grid.WorldToCell(correctedPosition);
-
-        return _buildingState.CheckPlacementValidity(gridPosition);
+        
+        bool used = toolState.OnAction(gridPosition);
+        
+        if (used)
+        {
+            InventorySlot activeSlot = hotbarDisplay.GetActiveSlot();
+            if (activeSlot != null)
+            {
+                EventBus.NotifyToolWasUsed(activeSlot);
+            }
+        }
+    }
+    
+    public void StopToolMode()
+    {
+        if (!_isToolModeActive) return;
+        
+        _isToolModeActive = false;
+        gridVisualisation.SetActive(false);
+        toolState.ExitState();
+        
+        PreviewSystem.Instance.HideToolIndicator();
+        
+        inputManager.OnClicked -= UseTool;
+        inputManager.OnExit -= StopToolMode;
+        _lastDetectedPosition = Vector3Int.zero;
     }
 }

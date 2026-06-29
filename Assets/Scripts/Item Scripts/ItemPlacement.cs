@@ -7,10 +7,8 @@ public class ItemPlacement : ItemData
     public Vector2Int size = Vector2Int.one;
     public GameObject prefab;
 
-    public override void Use()
+    public override void Use(InventorySlot slot)
     {
-        if (!PlacementSystem.Instance.CanPlaceCurrentObject()) return;
-        
-        base.Use();
+        base.Use(slot);
     }
 }

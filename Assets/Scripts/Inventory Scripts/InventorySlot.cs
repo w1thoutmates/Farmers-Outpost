@@ -4,24 +4,30 @@ using UnityEngine;
 [System.Serializable]
 public class InventorySlot : ISerializationCallbackReceiver
 {
-    [NonSerialized] private ItemData itemData; // Сделали не сериализуемым, чтобы в файле сохранения не путало. Если что то сломается - вернуть аннотацию [SerializeField]
+    [NonSerialized] private ItemData itemData;
     [SerializeField] private int stackSize;
     [SerializeField] private int itemID = -1;
+    private float _durability;
 
     public ItemData ItemData => itemData;
 
     public int StackSize => stackSize;
+    
+    public float Durability => _durability;
 
     public InventorySlot(ItemData source, int amount)
     {
-        this.itemData = source;
-        itemID = itemData.id;
-        this.stackSize = amount;
+        SetItem(source, amount);
     }
 
     public InventorySlot()
     {
         ClearSlot();
+    }
+    
+    public void Use()
+    {
+        ItemData?.Use(this);
     }
 
     public void ClearSlot()
@@ -57,11 +63,9 @@ public class InventorySlot : ISerializationCallbackReceiver
         }
     }
 
-    public void UpdateInventorySlot(ItemData data, int amount)
+    public void UpdateInventorySlot(ItemData source, int amount)
     {
-        itemData = data;
-        itemID = itemData.id;
-        stackSize = amount;
+        SetItem(source, amount);
     }
 
     public void AssignItem(InventorySlot invSlot)
@@ -92,6 +96,34 @@ public class InventorySlot : ISerializationCallbackReceiver
         splitStack = new InventorySlot(itemData, halfStack);
 
         return true;
+    }
+    
+    private void SetItem(ItemData source, int amount)
+    {
+        itemData = source;
+        itemID = source.id;
+        stackSize = amount;
+
+        if (source is ItemTool tool)
+        {
+            _durability = tool.maxDurability;
+        }
+    }
+
+    public void ReduceDurability(float reduceDurabilityByUse, ItemTool toolData)
+    {
+        _durability = Mathf.Clamp(_durability - reduceDurabilityByUse, 0, toolData.maxDurability);
+        if (_durability <= 0)
+        {
+            BreakItem();
+        }
+    }
+
+    public void BreakItem()
+    {
+        ClearSlot();
+        // Tool break sound
+        EventBus.NotifyThatToolWasDestroyed(this);
     }
 
     public void OnBeforeSerialize()

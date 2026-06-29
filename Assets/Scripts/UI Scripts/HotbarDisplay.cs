@@ -37,7 +37,9 @@ public class HotbarDisplay : StaticInventoryDisplay
         _playerInputActions.Player.Hotbar7.performed += Hotbar7;
         _playerInputActions.Player.UseItem.performed += UseItem;
         
-        EventBus.Subscribe(UpdateHotbarSlotAfterPlacementItemUsed);
+        EventBus.onPlacementItemWasUsed += UpdateHotbarSlotAfterPlacementItemUsed;
+        EventBus.onToolWasDestroyed += UpdateHotbarAfterToolDestroyed;
+        EventBus.onToolWasUsed += OnToolWasUsed;
     }
 
     protected override void OnDisable()
@@ -53,8 +55,10 @@ public class HotbarDisplay : StaticInventoryDisplay
         _playerInputActions.Player.Hotbar6.performed -= Hotbar6;
         _playerInputActions.Player.Hotbar7.performed -= Hotbar7;
         _playerInputActions.Player.UseItem.performed -= UseItem;
-        
-        EventBus.Unsubscribe(UpdateHotbarSlotAfterPlacementItemUsed);
+
+        EventBus.onPlacementItemWasUsed -= UpdateHotbarSlotAfterPlacementItemUsed;
+        EventBus.onToolWasDestroyed -= UpdateHotbarAfterToolDestroyed;
+        EventBus.onToolWasUsed -= OnToolWasUsed;
     }
 
     #region Hotbar Select Methods
@@ -107,43 +111,53 @@ public class HotbarDisplay : StaticInventoryDisplay
             {
                 PlacementSystem.Instance.StopPlacement();
             }
+            
+            if (PlacementSystem.Instance.IsToolModeActive)
+            {
+                PlacementSystem.Instance.StopToolMode();
+            }
 
             return;
         }
         
-        if (slots[_currentIndex].AssignedInventorySlot.ItemData is ItemPlacement itemPlacement)
+        var currentSlot = slots[_currentIndex].AssignedInventorySlot;
+    
+        if (currentSlot.ItemData is ItemPlacement itemPlacement)
         {
-            if (!PlacementSystem.Instance.IsPlacementModeActive)
-            {
-                PlacementSystem.Instance.StartPlacement(itemPlacement.id);
-            }
+            PlacementSystem.Instance.StartPlacement(itemPlacement.id);
+        }
+        else if (currentSlot.ItemData is ItemTool tool)
+        {
+            PlacementSystem.Instance.StartToolMode(tool.id);
         }
         else
         {
-            if (PlacementSystem.Instance.IsPlacementModeActive)
-            {
-                PlacementSystem.Instance.StopPlacement();
-            }
+            PlacementSystem.Instance.StopPlacement();
+            PlacementSystem.Instance.StopToolMode();
         }
     }
 
     void UseItem(InputAction.CallbackContext context)
     {
-        ItemData currentItemData = slots[_currentIndex].AssignedInventorySlot.ItemData;
-        if (currentItemData != null)
-        {
-            currentItemData.Use(); 
-        }
+        //slots[_currentIndex].AssignedInventorySlot.Use();
+    }
+    
+    private void UpdateHotbarAfterToolDestroyed(InventorySlot obj)
+    {
+        RefreshStaticDisplay();
+    }
+    
+    private void OnToolWasUsed(InventorySlot slot)
+    {
+        slot.Use();
+        RefreshStaticDisplay();
     }
 
-    void UpdateHotbarSlotAfterPlacementItemUsed()
+    void UpdateHotbarSlotAfterPlacementItemUsed(InventorySlot slot)
     {
-        ItemData currentItemData = slots[_currentIndex].AssignedInventorySlot.ItemData;
-        if (currentItemData != null && currentItemData is ItemPlacement)
-        {
-            slots[_currentIndex].AssignedInventorySlot.RemoveFromStack(1);
-            RefreshStaticDisplay();
-        }
+        slot.Use();
+        slot.RemoveFromStack(1);
+        RefreshStaticDisplay();
     }
 
     void ChangeIndex(int direction)
@@ -156,13 +170,20 @@ public class HotbarDisplay : StaticInventoryDisplay
         
         slots[_currentIndex].ToggleHighlight();
         
-        if (slots[_currentIndex].AssignedInventorySlot.ItemData is ItemPlacement itemPlacement)
+        var currentSlot = slots[_currentIndex].AssignedInventorySlot;
+    
+        if (currentSlot.ItemData is ItemPlacement itemPlacement)
         {
             PlacementSystem.Instance.StartPlacement(itemPlacement.id);
+        }
+        else if (currentSlot.ItemData is ItemTool tool)
+        {
+            PlacementSystem.Instance.StartToolMode(tool.id);
         }
         else
         {
             PlacementSystem.Instance.StopPlacement();
+            PlacementSystem.Instance.StopToolMode();
         }
     }
     
@@ -182,13 +203,29 @@ public class HotbarDisplay : StaticInventoryDisplay
         //         PlacementSystem.Instance.database.ItemPlacements.FindIndex(data => data.id == itemPlacement.id));
         // }
         
-        if (slots[_currentIndex].AssignedInventorySlot.ItemData is ItemPlacement itemPlacement)
+        var currentSlot = slots[_currentIndex].AssignedInventorySlot;
+    
+        if (currentSlot.ItemData is ItemPlacement itemPlacement)
         {
             PlacementSystem.Instance.StartPlacement(itemPlacement.id);
+        }
+        else if (currentSlot.ItemData is ItemTool tool)
+        {
+            PlacementSystem.Instance.StartToolMode(tool.id);
         }
         else
         {
             PlacementSystem.Instance.StopPlacement();
+            PlacementSystem.Instance.StopToolMode();
         }
+    }
+    
+    public InventorySlot GetActiveSlot()
+    {
+        if (slots != null && _currentIndex >= 0 && _currentIndex < slots.Length)
+        {
+            return slots[_currentIndex].AssignedInventorySlot;
+        }
+        return null;
     }
 }

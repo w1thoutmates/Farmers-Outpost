@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a427ea12da455c84ba6454a58a8bacb9, type: 3}
+  m_Name: Hoe
+  m_EditorClassIdentifier: Assembly-CSharp::ItemTool
+  id: 4
+  displayName: Hoe
+  description: This is a hoe.
+  icon: {fileID: 21300000, guid: 452ebbb68b13ba243b616ea70955a3ad, type: 3}
+  maxStackSize: 1
+  itemWorld: {fileID: 5762431344021669002, guid: 5a9542080e3f1c043ac73d06206efffc, type: 3}
+  maxDurability: 100
+  reduceDurabilityByUse: 1

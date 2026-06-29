@@ -4,9 +4,11 @@ using UnityEngine.Rendering.HighDefinition;
 
 public class DayNightCycler : MonoBehaviour
 {
+    public static DayNightCycler Instance;
+    
     [Header("Time Settings")]
     [Range(0f, 24f)] public float currentTime = 12f;
-    public float dayLengthInSeconds = 30f;
+    public float dayLengthInSeconds = 120f;
     public bool isPaused = false;
 
     [Header("Sun Reference")]
@@ -27,6 +29,14 @@ public class DayNightCycler : MonoBehaviour
 
     public float DayPercent => currentTime / 24f;
 
+    void Awake()
+    {
+        if (Instance == null)
+            Instance = this;
+        else 
+            Destroy(gameObject);
+    }
+    
     [System.Obsolete]
     void Start()
     {
@@ -55,7 +65,11 @@ public class DayNightCycler : MonoBehaviour
         if (!isPaused)
         {
             currentTime += (Time.deltaTime / dayLengthInSeconds) * 24f;
-            if (currentTime >= 24f) currentTime = 0f;
+            if (currentTime >= 24f)
+            {
+                currentTime = 0f;
+                EventBus.NotifyNewDayStarted();
+            }
         }
 
         UpdateLighting();
