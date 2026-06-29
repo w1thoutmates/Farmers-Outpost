@@ -48,20 +48,23 @@ public class HoeState : IToolState
     
     public void UpdateState(Vector3Int gridPosition)
     {
+        bool primary = CheckActionValidity(gridPosition, ToolUseType.Primary);
+        bool secondary = CheckActionValidity(gridPosition, ToolUseType.Secondary);
+        
         Vector3 worldPos = _grid.CellToWorld(gridPosition);
-        bool isValid = CheckActionValidity(gridPosition);
+        bool isValid = primary || secondary;
         _previewSystem.UpdateToolIndicator(worldPos, isValid);
     }
     
-    public bool OnAction(Vector3Int gridPosition)
+    public bool OnAction(Vector3Int gridPosition, InventorySlot slot, ToolUseType useType)
     {
-        if (!CheckActionValidity(gridPosition))
+        if (!CheckActionValidity(gridPosition, useType))
             return false;
 
         return HoePosition(gridPosition);
     }
     
-    public bool CheckActionValidity(Vector3Int gridPosition)
+    public bool CheckActionValidity(Vector3Int gridPosition,ToolUseType useType)
     {
         Vector3Int playerCell = _grid.WorldToCell(Player.Instance.transform.position);
 
@@ -107,21 +110,5 @@ public class HoeState : IToolState
         _hoedPositions[gridPosition] = true;
 
         return true;
-    }
-    
-    private List<Vector3Int> GetPositionsInRadius(Vector3Int center, int radius)
-    {
-        List<Vector3Int> positions = new List<Vector3Int>();
-    
-        for (int x = -radius; x <= radius; x++)
-        {
-            for (int z = -radius; z <= radius; z++)
-            {
-                Vector3Int pos = center + new Vector3Int(x, 0, z);
-                positions.Add(pos);
-            }
-        }
-    
-        return positions;
     }
 }

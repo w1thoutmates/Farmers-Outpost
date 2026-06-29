@@ -13,14 +13,28 @@
     <list default="true" id="63a57d10-30c5-44a8-8b64-58afc8653d45" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Farmer's Outpost/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Farmer's Outpost/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/MainScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/MainScene.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Inventory slot (0).prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Inventory slot (0).prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Watering world.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Watering world.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Building System/GridData.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Building System/GridData.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Building System/InputManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Building System/InputManager.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Building System/PlacementSystem.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Building System/PlacementSystem.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/EventBus.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/EventBus.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/GridToolState.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/GridToolState.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Ground.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Ground.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/HoeAction.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/HoeAction.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/HoeState.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/HoeState.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/IGridAction.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/IGridAction.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Interfaces/IToolState.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Interfaces/IToolState.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Inventory Scripts/InventorySlot.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Inventory Scripts/InventorySlot.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Item Scripts/ItemData.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Item Scripts/ItemData.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Item Scripts/ItemPlacement.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Item Scripts/ItemPlacement.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Item Scripts/ItemTool.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Item Scripts/ItemTool.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Item Scripts/Resources/ItemData/Hoe.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Item Scripts/Resources/ItemData/Hoe.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Item Scripts/WateringTool.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Item Scripts/WateringTool.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/ToolState.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/ToolState.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI Scripts/HotbarDisplay.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI Scripts/HotbarDisplay.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI Scripts/InventorySlotUI.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI Scripts/InventorySlotUI.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI Scripts/StaticInventoryDisplay.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI Scripts/StaticInventoryDisplay.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/WateringAction.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/WateringAction.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -150,7 +164,7 @@
       <workItem from="1782640329226" duration="2354000" />
       <workItem from="1782666813941" duration="10618000" />
       <workItem from="1782741292577" duration="4946000" />
-      <workItem from="1782750391213" duration="6665000" />
+      <workItem from="1782750391213" duration="16987000" />
     </task>
     <task id="LOCAL-00001" summary="Save and Load Система и немного рефакторинга">
       <option name="closed" value="true" />
@@ -232,7 +246,15 @@
       <option name="project" value="LOCAL" />
       <updated>1782751714414</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Добавлен новый инструмент">
+      <option name="closed" value="true" />
+      <created>1782758910069</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1782758910069</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -246,6 +268,17 @@
     <option name="unityProjectFolder" value="true" />
   </component>
   <component name="UnityUnitTestConfiguration" currentTestLauncher="Both" />
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
     <MESSAGE value="Save and Load Система и немного рефакторинга" />
@@ -255,7 +288,9 @@
     <MESSAGE value="Создана база для системы строительства по сетке" />
     <MESSAGE value="Рефакторинг + улучшена система строительства + добавлена шина событий + добавлено использование предметов которые можно разместить" />
     <MESSAGE value="Рефакторинг" />
-    <option name="LAST_COMMIT_MESSAGE" value="Рефакторинг" />
+    <MESSAGE value="Добавлен новый слот" />
+    <MESSAGE value="Добавлен новый инструмент" />
+    <option name="LAST_COMMIT_MESSAGE" value="Добавлен новый инструмент" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

@@ -14,7 +14,7 @@ public class Ground : MonoBehaviour
     public const int STATIC_OBSTACLE_ID = -99;
     
     [NonSerialized] public bool isOccupied = false;
-    [SerializeField] protected GroundType groundType = GroundType.Grass;
+    [SerializeField] public GroundType groundType = GroundType.Grass;
 
     protected virtual void Awake()
     {

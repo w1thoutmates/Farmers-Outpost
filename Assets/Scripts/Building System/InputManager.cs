@@ -7,7 +7,7 @@ public class InputManager : MonoBehaviour
 {
     [SerializeField] private Camera sceneCamera;
     [SerializeField] private LayerMask placementLayerMask;
-    public event Action OnClicked, OnExit;
+    public event Action OnClicked, OnRightClicked, OnExit;
 
     private Vector3 _lastMousePosition;
     
@@ -15,6 +15,9 @@ public class InputManager : MonoBehaviour
     {
         if (Mouse.current.leftButton.wasPressedThisFrame) 
             OnClicked?.Invoke();
+        
+        if (Mouse.current.rightButton.wasPressedThisFrame)
+            OnRightClicked?.Invoke();
         
         if (Keyboard.current.escapeKey.wasPressedThisFrame)
             OnExit?.Invoke();

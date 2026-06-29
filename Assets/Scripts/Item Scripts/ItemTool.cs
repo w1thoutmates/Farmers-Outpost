@@ -20,7 +20,11 @@ public class ItemTool : ItemData
             slot.BreakItem();
         }
     }
-    
+
+    public override void RightClickUse(InventorySlot slot)
+    {
+        base.RightClickUse(slot);
+    }
 }
 
 public enum ToolActionType

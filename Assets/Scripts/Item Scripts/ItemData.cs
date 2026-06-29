@@ -27,4 +27,20 @@ public abstract class ItemData : ScriptableObject
         
         Debug.Log($"[{displayName}] was used.");
     }
+
+    public virtual void RightClickUse(InventorySlot slot)
+    {
+        if (EventSystem.current != null && MouseItemData.IsPointerOverUIObject())
+        {
+            return; 
+        }
+        if (InventoryUIController.Instance != null)
+        {
+            bool isChestOpen = InventoryUIController.Instance.inventoryPanel.gameObject.activeInHierarchy;
+            bool isBackpackOpen = InventoryUIController.Instance.playerBackpackPanel.gameObject.activeInHierarchy;
+            if (isChestOpen || isBackpackOpen) return;
+        }
+        
+        Debug.Log($"[{displayName}] RIGHT MOUSE CLICK was used.");
+    }
 }

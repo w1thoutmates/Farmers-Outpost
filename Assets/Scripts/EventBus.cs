@@ -8,6 +8,7 @@ public static class EventBus
     public static event Action<InventorySlot> onToolWasDestroyed;
     public static event Action<InventorySlot> onToolWasUsed;
     public static event Action onNewDayStarted;
+    public static event Action onUINeedToRefresh;
 
     public static void NotifyPlacementItemUsed(InventorySlot slot)
     {
@@ -28,5 +29,10 @@ public static class EventBus
     {
         Debug.Log("Новый день начался");
         onNewDayStarted?.Invoke();
+    }
+
+    public static void NotifyThatUINeedToRefresh()
+    {
+        onUINeedToRefresh?.Invoke();
     }
 }

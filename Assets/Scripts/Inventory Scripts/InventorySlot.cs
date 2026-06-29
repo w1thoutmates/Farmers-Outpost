@@ -15,6 +15,8 @@ public class InventorySlot : ISerializationCallbackReceiver
     public int StackSize => stackSize;
     
     public float Durability => _durability;
+    
+    public float Watering => _watering;
 
     public InventorySlot(ItemData source, int amount)
     {
@@ -151,5 +153,45 @@ public class InventorySlot : ISerializationCallbackReceiver
 
         var db = Resources.Load<Database>("Database");
         itemData = db.GetItem(itemID);
+    }
+    
+    public void SetWatering(float amount)
+    {
+        _watering = Mathf.Clamp(amount, 0, GetMaxWaterCapacity());
+    }
+
+    public float GetMaxWaterCapacity()
+    {
+        if (itemData is WateringTool wateringTool)
+            return wateringTool.maxWaterCapacity;
+        return 0;
+    }
+
+    public float GetMaxDurability()
+    {
+        if (itemData is ItemTool tool && itemData is not WateringTool)
+            return tool.maxDurability;
+        return 0;
+    }
+
+    public bool IsWateringTool()
+    {
+        return itemData is WateringTool;
+    }
+
+    public bool IsToolWithDurability()
+    {
+        return itemData is ItemTool && !IsWateringTool();
+    }
+    
+    public bool RefillWatering(float amount)
+    {
+        if (!IsWateringTool()) return false;
+    
+        float maxCapacity = GetMaxWaterCapacity();
+        if (_watering >= maxCapacity) return false;
+    
+        _watering = Mathf.Clamp(_watering + amount, 0, maxCapacity);
+        return true;
     }
 }

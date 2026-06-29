@@ -11,4 +11,9 @@ public class ItemPlacement : ItemData
     {
         base.Use(slot);
     }
+
+    public override void RightClickUse(InventorySlot slot)
+    {
+        base.RightClickUse(slot);
+    }
 }

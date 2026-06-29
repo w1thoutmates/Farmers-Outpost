@@ -121,6 +121,8 @@ public class HotbarDisplay : StaticInventoryDisplay
         }
         
         var currentSlot = slots[_currentIndex].AssignedInventorySlot;
+        
+        slots[_currentIndex].UpdateDurabilityDisplay(currentSlot);
     
         if (currentSlot.ItemData is ItemPlacement itemPlacement)
         {
@@ -128,7 +130,7 @@ public class HotbarDisplay : StaticInventoryDisplay
         }
         else if (currentSlot.ItemData is ItemTool tool)
         {
-            PlacementSystem.Instance.StartToolMode(tool, currentSlot);
+            PlacementSystem.Instance.StartToolMode(tool);
         }
         else
         {
@@ -145,12 +147,14 @@ public class HotbarDisplay : StaticInventoryDisplay
     private void UpdateHotbarAfterToolDestroyed(InventorySlot obj)
     {
         RefreshStaticDisplay();
+        UpdateAllSlotsDisplay();
     }
     
     private void OnToolWasUsed(InventorySlot slot)
     {
         slot.Use();
         RefreshStaticDisplay();
+        UpdateAllSlotsDisplay();
     }
 
     void UpdateHotbarSlotAfterPlacementItemUsed(InventorySlot slot)
@@ -158,6 +162,7 @@ public class HotbarDisplay : StaticInventoryDisplay
         slot.Use();
         slot.RemoveFromStack(1);
         RefreshStaticDisplay();
+        UpdateAllSlotsDisplay();
     }
 
     void ChangeIndex(int direction)
@@ -178,7 +183,7 @@ public class HotbarDisplay : StaticInventoryDisplay
         }
         else if (currentSlot.ItemData is ItemTool tool)
         {
-            PlacementSystem.Instance.StartToolMode(tool, currentSlot);
+            PlacementSystem.Instance.StartToolMode(tool);
         }
         else
         {
@@ -211,7 +216,7 @@ public class HotbarDisplay : StaticInventoryDisplay
         }
         else if (currentSlot.ItemData is ItemTool tool)
         {
-            PlacementSystem.Instance.StartToolMode(tool, currentSlot);
+            PlacementSystem.Instance.StartToolMode(tool);
         }
         else
         {

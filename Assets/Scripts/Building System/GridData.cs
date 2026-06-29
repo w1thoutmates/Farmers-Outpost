@@ -5,6 +5,12 @@ using UnityEngine;
 public class GridData
 {
     private Dictionary<Vector3Int, PlacementData> placementObjects = new();
+    private Grid _grid;
+    
+    public GridData(Grid grid = null)
+    {
+        _grid = grid;
+    }
 
     public void AddObjectAt(Vector3Int gridPosition, Vector2Int objectSize, int ID, int placedObjectIndex)
     {
@@ -58,6 +64,30 @@ public class GridData
         {
             return data.ID == PlacementSystem.Instance.FarmlandId;
         }
+        return false;
+    }
+    
+    public bool IsPositionWater(Vector3Int gridPosition)
+    {
+        if (_grid == null) return false;
+        
+        var allGrounds = GameObject.FindObjectsByType<Ground>();
+        
+        foreach (var ground in allGrounds)
+        {
+            Vector3Int groundCell = _grid.WorldToCell(ground.transform.position);
+            groundCell.y = 0;   // Нормализация координат 
+            gridPosition.y = 0; // потому что используются только X и Z
+                                // В альтернативе можно исп. 
+                                // if (ground.groundType == GroundType.Water &&
+                                //    groundCell.x == gridPosition.x &&
+                                //    groundCell.z == gridPosition.z)
+            if (groundCell == gridPosition && ground.groundType == GroundType.Water)
+            {
+                return true;
+            }
+        }
+        
         return false;
     }
     

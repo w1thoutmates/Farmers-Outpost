@@ -1,5 +1,11 @@
 using UnityEngine;
 
+public enum ToolUseType
+{
+    Primary,
+    Secondary
+}
+
 public class ToolState : IToolState
 {
     private IToolState _currentToolState;
@@ -20,10 +26,8 @@ public class ToolState : IToolState
         _hoeId = hoeId;
     }
     
-    public void SetTool(ItemTool tool, InventorySlot slot)
+    public void SetTool(ItemTool tool)
     {
-        ExitState();
-
         ExitState();
 
         IGridAction action = tool.actionType switch
@@ -37,7 +41,7 @@ public class ToolState : IToolState
         if (action == null) { _currentToolState = null; return; }
 
         _currentToolState = new GridToolState(action, _grid, _previewSystem, 
-            _gridData, _objectPlacer, _database, slot);
+            _gridData, _objectPlacer, _database);
         _currentToolState.EnterState();
     }
     
@@ -51,14 +55,14 @@ public class ToolState : IToolState
         _currentToolState?.UpdateState(gridPosition);
     }
     
-    public bool OnAction(Vector3Int gridPosition)
+    public bool OnAction(Vector3Int gridPosition, InventorySlot slot, ToolUseType useType)
     {
-        return _currentToolState?.OnAction(gridPosition) ?? false;
+        return _currentToolState?.OnAction(gridPosition, slot, useType) ?? false;
     }
     
-    public bool CheckActionValidity(Vector3Int gridPosition)
+    public bool CheckActionValidity(Vector3Int gridPosition, ToolUseType useType)
     {
-        return _currentToolState?.CheckActionValidity(gridPosition) ?? false;
+        return _currentToolState?.CheckActionValidity(gridPosition, useType) ?? false;
     }
     
     public void ExitState()

@@ -12,5 +12,9 @@ public class WateringTool : ItemTool
     {
         base.Use(slot);
     }
-    
+
+    public override void RightClickUse(InventorySlot slot)
+    {
+        base.RightClickUse(slot);
+    }
 }

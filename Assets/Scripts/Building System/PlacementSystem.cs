@@ -80,7 +80,7 @@ public class PlacementSystem : MonoBehaviour
         if (Instance == null) Instance = this;
         else Destroy(gameObject);
         
-        _objectPlacementData = new();
+        _objectPlacementData = new(grid);
     }
     
     void Start()
@@ -153,7 +153,7 @@ public class PlacementSystem : MonoBehaviour
         _lastDetectedPosition = Vector3Int.zero;
     }
     
-    public void StartToolMode(ItemTool tool, InventorySlot slot)
+    public void StartToolMode(ItemTool tool)
     {
         if (InventoryUIController.Instance != null &&
             InventoryUIController.Instance.IsAnyInventoryOpen)
@@ -170,19 +170,28 @@ public class PlacementSystem : MonoBehaviour
         _isToolModeActive = true;
         gridVisualisation.SetActive(true);
         
-        toolState.SetTool(tool, slot);
+        toolState.SetTool(tool);
         toolState.EnterState();
         
-        inputManager.OnClicked += UseTool;
+        inputManager.OnClicked += UseToolPrimary;
+        inputManager.OnRightClicked += UseToolSecondary;
         inputManager.OnExit += StopToolMode;
     }
-    
-    void UseTool()
+
+    void UseToolPrimary()
     {
-        Debug.Log("UseTool called");
+        UseTool(ToolUseType.Primary);
+    }
+
+    void UseToolSecondary()
+    {
+        UseTool(ToolUseType.Secondary);
+    }
+    
+    void UseTool(ToolUseType useType)
+    {
         if (!_isToolModeActive || inputManager.IsPointerOverUIObject())
         {
-            Debug.Log($"UseTool blocked: isToolModeActive={_isToolModeActive}, overUI={inputManager.IsPointerOverUIObject()}");
             return;
         }
         
@@ -191,14 +200,17 @@ public class PlacementSystem : MonoBehaviour
         Vector3 correctedPosition = new Vector3(mousePosition.x, snappedY, mousePosition.z);
         Vector3Int gridPosition = grid.WorldToCell(correctedPosition);
         
-        bool used = toolState.OnAction(gridPosition);
-        Debug.Log($"UseTool result: {used}");
+        InventorySlot activeSlot = hotbarDisplay.GetActiveSlot();
+        bool used = toolState.OnAction(gridPosition, activeSlot, useType);
         
         if (used)
         {
-            InventorySlot activeSlot = hotbarDisplay.GetActiveSlot();
-            Debug.Log($"activeSlot: {activeSlot?.ItemData?.displayName}");
             EventBus.NotifyToolWasUsed(activeSlot);
+            
+            if (hotbarDisplay != null)
+            {
+                hotbarDisplay.UpdateAllSlotsDisplay();
+            }
         }
     }
     
@@ -212,7 +224,8 @@ public class PlacementSystem : MonoBehaviour
         
         PreviewSystem.Instance.HideToolIndicator();
         
-        inputManager.OnClicked -= UseTool;
+        inputManager.OnClicked -= UseToolPrimary;
+        inputManager.OnRightClicked -= UseToolSecondary;
         inputManager.OnExit -= StopToolMode;
         _lastDetectedPosition = Vector3Int.zero;
     }

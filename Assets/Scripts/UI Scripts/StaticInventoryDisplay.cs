@@ -9,6 +9,7 @@ public class StaticInventoryDisplay : InventoryDisplay
     protected virtual void OnEnable()
     {
         PlayerInventoryHolder.OnPlayerInventoryChanged += RefreshStaticDisplay;
+        EventBus.onUINeedToRefresh += UpdateAllSlotsDisplay;
     }
 
     protected virtual void OnDisable()
@@ -18,6 +19,8 @@ public class StaticInventoryDisplay : InventoryDisplay
         {
             inventorySystem.OnInventorySlotChanged -= UpdateSlot;
         }
+        
+        EventBus.onUINeedToRefresh -= UpdateAllSlotsDisplay;
     }
 
     protected void RefreshStaticDisplay()
@@ -30,6 +33,27 @@ public class StaticInventoryDisplay : InventoryDisplay
             inventorySystem.OnInventorySlotChanged += UpdateSlot;
             
             AssignSlots(inventorySystem, 0);
+        }
+
+        foreach (InventorySlotUI slot in slots)
+        {
+            if (slot.AssignedInventorySlot != null)
+            {
+                slot.UpdateUISlot();
+                slot.UpdateDurabilityDisplay(slot.AssignedInventorySlot);
+            }
+        }
+    }
+    
+    public void UpdateAllSlotsDisplay()
+    {
+        foreach (InventorySlotUI slot in slots)
+        {
+            if (slot.AssignedInventorySlot != null)
+            {
+                slot.UpdateUISlot();
+                slot.UpdateDurabilityDisplay(slot.AssignedInventorySlot);
+            }
         }
     }
 

@@ -9,7 +9,6 @@ public class GridToolState : IToolState
     private readonly ObjectPlacer _objectPlacer;
     private readonly Database _database;
     private readonly int _radius;
-    private readonly InventorySlot _slot;
 
     public GridToolState(
         IGridAction action,
@@ -18,7 +17,6 @@ public class GridToolState : IToolState
         GridData gridData,
         ObjectPlacer objectPlacer,
         Database database,
-        InventorySlot slot,
         int radius = 3)
     {
         _action = action;
@@ -28,7 +26,6 @@ public class GridToolState : IToolState
         _objectPlacer = objectPlacer;
         _database = database;
         _radius = radius;
-        _slot = slot;
     }
 
     public void EnterState() => _previewSystem.ShowToolIndicator(Vector2Int.one);
@@ -36,28 +33,33 @@ public class GridToolState : IToolState
 
     public void UpdateState(Vector3Int gridPosition)
     {
-        bool isValid = CheckActionValidity(gridPosition);
-        _previewSystem.UpdateToolIndicator(_grid.CellToWorld(gridPosition), isValid);
+        bool primary = CheckActionValidity(gridPosition, ToolUseType.Primary);
+        bool secondary = CheckActionValidity(gridPosition, ToolUseType.Secondary);
+
+        bool isValid = primary || secondary;
+
+        _previewSystem.UpdateToolIndicator(
+            _grid.CellToWorld(gridPosition),
+            isValid);
     }
 
-    public bool OnAction(Vector3Int gridPosition)
+    public bool OnAction(Vector3Int gridPosition, InventorySlot slot, ToolUseType useType)
     {
-        bool valid = CheckActionValidity(gridPosition);
-        Debug.Log($"GridToolState.OnAction: valid={valid}, pos={gridPosition}");
-        if (!valid) return false;
-        return _action.Execute(gridPosition, _gridData, _grid, _objectPlacer, _database, _slot);
+        if (!CheckActionValidity(gridPosition, useType)) return false;
+        bool result = _action.Execute(gridPosition, _gridData, _grid, _objectPlacer, _database, slot, useType);
+        return result;
     }
 
-    public bool CheckActionValidity(Vector3Int gridPosition)
+    public bool CheckActionValidity(Vector3Int gridPosition, ToolUseType useType)
     {
         Vector3Int playerCell = _grid.WorldToCell(Player.Instance.transform.position);
+        int radius = _action.GetRadius(useType);
+        
         int dx = Mathf.Abs(gridPosition.x - playerCell.x);
         int dz = Mathf.Abs(gridPosition.z - playerCell.z);
-        Debug.Log($"CheckValidity: dx={dx}, dz={dz}, radius={_radius}");
-        if (dx > _radius || dz > _radius) return false;
+        if (dx > radius || dz > radius) return false;
 
-        bool canAct = _action.CanActOn(gridPosition, _gridData);
-        Debug.Log($"CanActOn: {canAct}");
+        bool canAct = _action.CanActOn(gridPosition, _gridData, useType);
         return canAct;
     }
 }
